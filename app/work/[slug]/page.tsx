@@ -1,14 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projects } from "../../data/projects";
+import { Annotated, Chapter, Compare, Insights, Visual } from "../../components/CaseBlocks";
 
-const sections = [
-  "Challenge",
-  "Research insights",
-  "Flows & wireframes",
-  "Final screens",
-  "Outcome",
-];
+
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -69,21 +64,60 @@ export default async function CaseStudyPage({
         </div>
       </section>
 
-      {/* Story sections */}
-      {sections.map((title, i) => (
-        <section key={title} className="px-6 py-20 md:px-16 md:py-28">
-          <p className="font-mono text-sm uppercase tracking-widest text-accent">
-            0{i + 1} / {title}
-          </p>
-          <p className="mt-6 max-w-xl text-lg text-foreground/70">
-            Placeholder: one concise sentence connecting the visual below. Add
-            only real findings and results.
-          </p>
-          <div className="mt-10 flex aspect-[16/9] w-full items-center justify-center border border-foreground/30 bg-[#1c1c1e] font-mono text-sm uppercase tracking-widest text-foreground/60">
-            {title} visual — placeholder
-          </div>
-        </section>
-      ))}
+            <Chapter
+        number="01"
+        title="Challenge"
+        intro="Placeholder: one or two sentences on the problem and who it affects."
+      >
+        <Visual label="Context visual — placeholder" caption="Fig. 01 — placeholder caption" />
+      </Chapter>
+
+      <Chapter
+        number="02"
+        title="Research insights"
+        intro="Placeholder: what you learned. Add only real findings."
+      >
+        <Insights />
+      </Chapter>
+
+      <Chapter
+        number="03"
+        title="Flows & wireframes"
+        intro="Placeholder: how the experience was structured."
+      >
+        <Visual label="User flow — placeholder" caption="Fig. 02 — user flow" />
+        <Compare leftLabel="Wireframe" rightLabel="Final design" />
+      </Chapter>
+
+      <Chapter
+        number="04"
+        title="Design iterations"
+        intro="Placeholder: what changed between versions and why."
+      >
+        <Compare leftLabel="Iteration 1" rightLabel="Iteration 2" />
+      </Chapter>
+
+      <Chapter
+        number="05"
+        title="Final screens"
+        intro="Placeholder: the key decisions behind the finished design."
+      >
+        <Annotated
+          notes={[
+            "Placeholder: a key design decision and why you made it.",
+            "Placeholder: another decision tied to a research insight.",
+            "Placeholder: a detail that improves usability.",
+          ]}
+        />
+      </Chapter>
+
+      <Chapter
+        number="06"
+        title="Outcome"
+        intro="Placeholder: only add real, verified results."
+      >
+        <Visual label="Outcome visual — placeholder" ratio="16/9" />
+      </Chapter>
 
       {/* Next project */}
       <section className="border-t border-line px-6 py-20 md:px-16">
