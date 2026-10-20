@@ -1,6 +1,7 @@
   import HeroHeadline from "./components/HeroHeadline";
     import RevealBlock from "./components/RevealBlock";
       import WorkList from "./components/WorkList";
+        import StoryReveal from "./components/StoryReveal";
 export default function Home() {
   return (
     <main>
@@ -36,6 +37,12 @@ export default function Home() {
       01 / Selected Work
     </p>
     <WorkList />
+  </section>
+    <section id="story" className="px-6 pb-[45vh] pt-24 md:px-16">
+    <p className="mb-10 font-mono text-sm uppercase tracking-widest text-accent">
+      02 / Story
+    </p>
+    <StoryReveal />
   </section>
     </main>
   );
