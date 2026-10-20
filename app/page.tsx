@@ -1,9 +1,10 @@
   import HeroHeadline from "./components/HeroHeadline";
     import RevealBlock from "./components/RevealBlock";
+      import WorkList from "./components/WorkList";
 export default function Home() {
   return (
     <main>
-      <section className="relative min-h-[85vh] overflow-hidden px-6 pb-10 pt-8 md:px-16">
+      <section className="relative min-h-[85vh] px-6 pb-10 pt-8 md:min-h-[max(85vh,calc(37.4vw_+_8rem))] md:px-16">
         {/* Top label row */}
         <div className="flex items-center justify-between font-mono text-xs uppercase tracking-widest text-foreground/60">
           <span>Portfolio — Issue 01</span>
@@ -30,11 +31,12 @@ export default function Home() {
       </section>
 
       {/* Work section placeholder: the "Work" nav link jumps here */}
-      <section id="work" className="min-h-screen px-6 py-24 md:px-16">
-        <p className="font-mono text-sm uppercase tracking-widest text-accent">
-          01 / Selected Work
-        </p>
-      </section>
+        <section id="work" className="px-6 py-24 md:px-16">
+    <p className="font-mono text-sm uppercase tracking-widest text-accent">
+      01 / Selected Work
+    </p>
+    <WorkList />
+  </section>
     </main>
   );
 }
