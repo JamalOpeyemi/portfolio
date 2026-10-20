@@ -1,4 +1,5 @@
   import HeroHeadline from "./components/HeroHeadline";
+    import RevealBlock from "./components/RevealBlock";
 export default function Home() {
   return (
     <main>
@@ -10,12 +11,15 @@ export default function Home() {
         </div>
 
         {/* Portrait placeholder: replace with your photo later */}
-        <div className="relative z-0 mt-10 aspect-[3/4] w-full max-w-xs border border-foreground/30 bg-[#1c1c1e] md:absolute md:right-16 md:top-24 md:mt-0 md:w-[28vw] md:max-w-none">
-  <div className="flex h-full flex-col items-center justify-center gap-1 text-center font-mono text-sm uppercase tracking-widest text-foreground/80">
-  <span>Portrait</span>
-  <span className="text-foreground/50">Placeholder</span>
-</div>
-</div>
+         <RevealBlock
+    delay={0.3}
+    className="relative z-0 mt-10 aspect-[3/4] w-full max-w-xs border border-foreground/30 bg-[#1c1c1e] md:absolute md:right-16 md:top-24 md:mt-0 md:w-[28vw] md:max-w-none"
+  >
+    <div className="flex h-full flex-col items-center justify-center gap-1 text-center font-mono text-sm uppercase tracking-widest text-foreground/80">
+      <span>Portrait</span>
+      <span className="text-foreground/50">Placeholder</span>
+    </div>
+  </RevealBlock>
 
         {/* Headline (placeholder wording, rewrite it in your own voice) */}
           <HeroHeadline />
