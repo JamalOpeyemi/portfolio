@@ -1,18 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import {
   motion,
   useMotionValue,
   useReducedMotion,
   useSpring,
 } from "framer-motion";
-
-const projects = [
-  { id: "01", title: "Project One", type: "Discipline — placeholder", year: "20XX" },
-  { id: "02", title: "Project Two", type: "Discipline — placeholder", year: "20XX" },
-  { id: "03", title: "Project Three", type: "Discipline — placeholder", year: "20XX" },
-];
+import { projects } from "../data/projects";
 
 export default function WorkList() {
   const [active, setActive] = useState<number | null>(null);
@@ -29,8 +25,6 @@ export default function WorkList() {
   }
 
   function handleEnter(e: React.MouseEvent, index: number) {
-    // When entering the list from outside, place the card at the cursor
-    // instantly so it doesn't fly in from the corner of the screen.
     if (active === null) {
       x.set(e.clientX + 160);
       y.set(e.clientY);
@@ -49,9 +43,8 @@ export default function WorkList() {
       >
         {projects.map((project, i) => (
           <li key={project.id} className="border-b border-line">
-            {/* href="#" is temporary; real case study links come later */}
-            <a
-              href="#"
+            <Link
+              href={`/work/${project.slug}`}
               onMouseEnter={(e) => handleEnter(e, i)}
               className="group grid grid-cols-[3rem_1fr] items-baseline gap-x-4 py-8 focus-visible:outline-2 focus-visible:outline-accent md:grid-cols-[5rem_1fr_18rem_6rem]"
             >
@@ -67,12 +60,11 @@ export default function WorkList() {
               <span className="hidden text-right font-mono text-xs uppercase tracking-widest text-foreground/60 md:block">
                 {project.year}
               </span>
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
 
-      {/* Floating preview card: desktop only, hidden if motion is reduced */}
       {!reduceMotion && (
         <motion.div
           aria-hidden="true"
