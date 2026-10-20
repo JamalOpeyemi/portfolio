@@ -3,7 +3,7 @@ import Link from "next/link";
 const links = [
   { href: "/#work", label: "Work" },
   { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export default function Header() {

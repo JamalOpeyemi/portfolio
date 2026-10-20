@@ -2,6 +2,7 @@
     import RevealBlock from "./components/RevealBlock";
       import WorkList from "./components/WorkList";
         import StoryReveal from "./components/StoryReveal";
+          import ContactCTA from "./components/ContactCTA";
 export default function Home() {
   return (
     <main>
