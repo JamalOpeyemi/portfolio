@@ -5,6 +5,7 @@ import {
   JetBrains_Mono,
 } from "next/font/google";
 import "./globals.css";
+  import Header from "./components/Header";
 
 const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -39,7 +40,10 @@ export default function RootLayout({
       lang="en"
       className={`${bricolage.variable} ${instrument.variable} ${jetbrains.variable}`}
     >
-      <body className="antialiased">{children}</body>
+        <body className="antialiased">
+    <Header />
+    {children}
+  </body>
     </html>
   );
 }
