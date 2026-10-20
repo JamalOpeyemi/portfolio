@@ -1,3 +1,4 @@
+  import HeroHeadline from "./components/HeroHeadline";
 export default function Home() {
   return (
     <main>
@@ -9,23 +10,15 @@ export default function Home() {
         </div>
 
         {/* Portrait placeholder: replace with your photo later */}
-        <div className="mt-10 aspect-[3/4] w-full max-w-xs border border-line bg-surface md:absolute md:right-16 md:top-24 md:mt-0 md:w-[28vw] md:max-w-none">
-          <div className="flex h-full items-end p-4 font-mono text-xs uppercase tracking-widest text-foreground/50">
-            Portrait — placeholder
-          </div>
-        </div>
+        <div className="relative z-0 mt-10 aspect-[3/4] w-full max-w-xs border border-foreground/30 bg-[#1c1c1e] md:absolute md:right-16 md:top-24 md:mt-0 md:w-[28vw] md:max-w-none">
+  <div className="flex h-full flex-col items-center justify-center gap-1 text-center font-mono text-sm uppercase tracking-widest text-foreground/80">
+  <span>Portrait</span>
+  <span className="text-foreground/50">Placeholder</span>
+</div>
+</div>
 
         {/* Headline (placeholder wording, rewrite it in your own voice) */}
-        <h1 className="relative z-10 mt-10 text-[13vw] font-bold leading-[0.88] tracking-tight md:mt-16 md:text-[10vw]">
-          Interfaces
-          <br />
-          with a{" "}
-          <span className="font-serif font-normal italic text-accent">
-            point
-          </span>
-          <br />
-          of view.
-        </h1>
+          <HeroHeadline />
 
         <p className="relative z-10 mt-10 font-mono text-xs uppercase tracking-widest text-foreground/60">
           UX/UI Designer

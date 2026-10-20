@@ -1,13 +1,9 @@
 import type { Metadata } from "next";
-import {
-  Bricolage_Grotesque,
-  Instrument_Serif,
-  JetBrains_Mono,
-} from "next/font/google";
+import { Archivo, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
   import Header from "./components/Header";
 
-const bricolage = Bricolage_Grotesque({
+const bricolage = Archivo({
   subsets: ["latin"],
   variable: "--font-bricolage",
   display: "swap",
