@@ -1,5 +1,5 @@
 import HeroHeadline from "./HeroHeadline";
-import Marquee from "./Marquee";
+
 
 // PLACEHOLDERS: replace with your own words and your real resume link.
 const resumeUrl = "#"; // paste your resume link here
@@ -24,7 +24,7 @@ export default function Hero() {
       </div>
 
       {/* Intro, scroll cue, buttons */}
-      <div className="grid items-end gap-6 pb-8 md:grid-cols-3">
+      <div className="grid items-end gap-6 pb-10 md:grid-cols-3">
         <p className="max-w-sm text-base leading-snug text-foreground/70 md:text-lg">
           {intro}
         </p>
@@ -54,10 +54,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scrolling strip */}
-      <div className="-mx-6 md:-mx-16">
-        <Marquee />
-      </div>
+      
     </section>
   );
 }
