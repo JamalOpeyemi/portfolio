@@ -1,6 +1,6 @@
 export default function FlipText({ text }: { text: string }) {
   return (
-    <span>
+    <span data-cursor="text">
       {/* Hidden text for screen readers */}
       <span className="sr-only">{text}</span>
 

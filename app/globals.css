@@ -48,3 +48,7 @@ body {
     animation: none;
   }
 }
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none !important;
+}
