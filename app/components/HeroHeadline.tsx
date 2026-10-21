@@ -15,7 +15,7 @@ export default function HeroHeadline() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <h1 className="relative z-10 mt-10 text-[13vw] font-bold leading-[0.88] tracking-tight md:mt-16 md:text-[10vw]">
+    <h1 className="relative z-10 mt-10 text-[13vw] font-bold leading-[0.88] tracking-tight md:mt-16 md:text-[11.5vw]">
       {lines.map((line, i) => (
         <span key={i} className="block overflow-hidden pb-[0.1em]">
           <motion.span
