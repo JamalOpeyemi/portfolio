@@ -24,7 +24,7 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Elijah the Great — Portfolio",
+  title: "Elijah Opeyemi — Portfolio",
   description: "UX/UI designer portfolio",
 };
 

@@ -1,5 +1,5 @@
 // PLACEHOLDER words: edit freely.
-const items = ["UX/UI Designer", "Elijah the Great", "Portfolio 2026"];
+const items = ["UX/UI Designer", "Elijah Opeyemi", "Portfolio 2026"];
 
 // Repeat enough times to fill wide screens
 const half = Array.from({ length: 4 }, () => items).flat();

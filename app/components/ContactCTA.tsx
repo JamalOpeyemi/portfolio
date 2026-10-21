@@ -1,3 +1,4 @@
+  import FlipText from "./FlipText";
 const email = "elijahtemiye46@gmail.com";
 
 const links = [
@@ -16,7 +17,7 @@ export default function ContactCTA() {
 
       {/* Placeholder wording: rewrite in your own voice */}
       <h2 className="mt-8 text-[13vw] font-bold leading-[0.88] tracking-tight md:text-[9vw]">
-        Let&apos;s make{" "}
+          <FlipText text="Let's make" />{" "}
         <span className="font-serif font-normal italic text-accent">
           something
         </span>

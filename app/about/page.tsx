@@ -3,7 +3,7 @@ import ContactCTA from "../components/ContactCTA";
 import RevealBlock from "../components/RevealBlock";
 
 export const metadata: Metadata = {
-  title: "About — Elijah the Great",
+  title: "About — Elijah Opeyemi",
 };
 
 // PLACEHOLDERS: replace with your real content.

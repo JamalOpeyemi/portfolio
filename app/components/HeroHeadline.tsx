@@ -1,23 +1,23 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import FlipText from "./FlipText";
 
 const lines = [
-  <>Interfaces</>,
-  <>
-    with a{" "}
-    <span className="font-serif font-normal italic text-accent">point</span>
-  </>,
-  <>of view.</>,
+  { text: "Elijah", align: "" },
+  { text: "Opeyemi", align: "md:text-right" },
 ];
 
 export default function HeroHeadline() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <h1 className="relative z-10 mt-10 text-[13vw] font-bold leading-[0.88] tracking-tight md:mt-16 md:text-[11.5vw]">
+    <h1 className="relative z-10 mt-10 text-[19vw] font-bold leading-[0.85] tracking-tight md:mt-16 md:text-[18vw]">
       {lines.map((line, i) => (
-        <span key={i} className="block overflow-hidden pb-[0.1em]">
+        <span
+          key={line.text}
+          className={`-mb-[0.12em] block overflow-hidden pb-[0.2em] ${line.align}`}
+        >
           <motion.span
             className="block"
             initial={reduceMotion ? false : { y: "110%" }}
@@ -28,7 +28,7 @@ export default function HeroHeadline() {
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            {line}
+            <FlipText text={line.text} />
           </motion.span>
         </span>
       ))}

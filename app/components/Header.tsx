@@ -13,7 +13,7 @@ export default function Header() {
         href="/"
         className="font-mono text-sm uppercase tracking-widest focus-visible:outline-2 focus-visible:outline-accent"
       >
-        Elijah the Great
+        Elijah Opeyemi
       </Link>
       <nav aria-label="Main">
         <ul className="flex gap-6 font-mono text-sm uppercase tracking-widest">

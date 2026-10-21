@@ -9,6 +9,7 @@ import {
   useSpring,
 } from "framer-motion";
 import { projects } from "../data/projects";
+  import FlipText from "./FlipText";
 
 export default function WorkList() {
   const [active, setActive] = useState<number | null>(null);
@@ -52,7 +53,7 @@ export default function WorkList() {
                 {project.id}
               </span>
               <span className="text-5xl font-bold tracking-tight transition-all duration-300 group-hover:translate-x-4 group-hover:text-accent md:text-7xl">
-                {project.title}
+                  <FlipText text={project.title} />
               </span>
               <span className="hidden font-mono text-xs uppercase tracking-widest text-foreground/60 md:block">
                 {project.type}
