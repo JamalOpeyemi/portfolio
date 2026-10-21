@@ -1,6 +1,5 @@
 import HeroHeadline from "./HeroHeadline";
 
-
 // PLACEHOLDERS: replace with your own words and your real resume link.
 const resumeUrl = "#"; // paste your resume link here
 const intro =
@@ -8,24 +7,31 @@ const intro =
 
 export default function Hero() {
   return (
-    <section className="flex min-h-[calc(100svh-4rem)] flex-col px-6 pt-8 md:px-16">
-      {/* Info row */}
-      <div className="grid grid-cols-2 gap-y-2 font-mono text-xs uppercase tracking-widest text-foreground/60 md:grid-cols-3">
-        <span className="whitespace-nowrap">Portfolio — Issue 01</span>
-        <span className="order-3 col-span-2 whitespace-nowrap md:order-none md:col-span-1 md:text-center">
+    <section className="flex min-h-[calc(100svh-3.5rem)] flex-col px-6 pt-6 md:min-h-[calc(100svh-4rem)] md:px-16 md:pt-8">
+      {/* Info row: one line on every screen size */}
+      <div className="flex items-center justify-between gap-2 font-mono text-[10px] uppercase tracking-wider text-foreground/60 md:grid md:grid-cols-3 md:text-xs md:tracking-widest">
+        <span className="whitespace-nowrap">
+          Portfolio<span className="hidden md:inline"> — Issue 01</span>
+        </span>
+        <span className="whitespace-nowrap md:text-center">
           UI/UX Designer / Vibe Coder
         </span>
-        <span className="whitespace-nowrap text-right">Based in Malaysia</span>
+        <span className="whitespace-nowrap md:text-right">
+          <span className="hidden md:inline">Based in </span>Malaysia
+        </span>
       </div>
 
-      {/* Name, centered in the remaining space */}
-      <div className="flex flex-1 items-center py-8">
+      {/* Name (and, on phones only, the intro right beneath it) */}
+      <div className="flex flex-1 flex-col justify-center gap-8 py-8">
         <HeroHeadline />
+        <p className="max-w-xs text-base leading-snug text-foreground/70 md:hidden">
+          {intro}
+        </p>
       </div>
 
-      {/* Intro, scroll cue, buttons */}
-      <div className="grid items-end gap-6 pb-10 md:grid-cols-3">
-        <p className="max-w-sm text-base leading-snug text-foreground/70 md:text-lg">
+      {/* Desktop intro, scroll cue, buttons */}
+      <div className="grid items-end gap-6 pb-8 md:grid-cols-3 md:pb-10">
+        <p className="hidden max-w-sm text-lg leading-snug text-foreground/70 md:block">
           {intro}
         </p>
 
@@ -36,7 +42,7 @@ export default function Hero() {
           Scroll <span className="scroll-cue-arrow ml-2">↓</span>
         </div>
 
-        <div className="flex flex-wrap gap-3 md:justify-end">
+        <div className="flex justify-center gap-3 md:justify-end">
           <a
             href={resumeUrl}
             target="_blank"
@@ -53,8 +59,6 @@ export default function Hero() {
           </a>
         </div>
       </div>
-
-      
     </section>
   );
 }
