@@ -7,9 +7,9 @@ const intro =
 
 export default function Hero() {
   return (
-    <section className="flex min-h-[calc(100svh-3.5rem)] flex-col px-6 pt-6 md:min-h-[calc(100svh-4rem)] md:px-16 md:pt-8">
+    <section className="flex flex-col px-6 pb-12 pt-6 md:min-h-[calc(100svh-4rem)] md:px-16 md:pb-0 md:pt-8">
       {/* Info row: one line on every screen size */}
-      <div className="flex items-center justify-between gap-2 font-mono text-[10px] uppercase tracking-wider text-foreground/60 md:grid md:grid-cols-3 md:text-xs md:tracking-widest">
+      <div className="flex items-center justify-between gap-1 font-mono text-[9px] uppercase tracking-normal text-foreground/60 md:grid md:grid-cols-3 md:text-xs md:tracking-widest">
         <span className="whitespace-nowrap">
           Portfolio<span className="hidden md:inline"> — Issue 01</span>
         </span>
@@ -22,7 +22,7 @@ export default function Hero() {
       </div>
 
       {/* Name (and, on phones only, the intro right beneath it) */}
-      <div className="flex flex-1 flex-col justify-center gap-8 py-8">
+      <div className="mt-10 flex flex-col gap-8 md:mt-0 md:flex-1 md:justify-center md:py-8">
         <HeroHeadline />
         <p className="max-w-xs text-base leading-snug text-foreground/70 md:hidden">
           {intro}
@@ -30,7 +30,7 @@ export default function Hero() {
       </div>
 
       {/* Desktop intro, scroll cue, buttons */}
-      <div className="grid items-end gap-6 pb-8 md:grid-cols-3 md:pb-10">
+      <div className="mt-10 grid items-end gap-6 md:mt-0 md:grid-cols-3 md:pb-10">
         <p className="hidden max-w-sm text-lg leading-snug text-foreground/70 md:block">
           {intro}
         </p>
