@@ -13,11 +13,11 @@ export type Project = {
 // PLACEHOLDERS: replace with your real projects later.
 export const projects: Project[] = [
   {
-    slug: "project-one",
+    slug: "Elysian",
     id: "01",
     title: "Project One",
     type: "Discipline — placeholder",
-    year: "20XX",
+    year: "2026",
     role: "Role — placeholder",
     timeline: "Timeline — placeholder",
     tools: "Tools — placeholder",
@@ -25,11 +25,11 @@ export const projects: Project[] = [
       "Placeholder summary. One or two sentences on the problem and your contribution.",
   },
   {
-    slug: "project-two",
+    slug: "Mimar-Tech",
     id: "02",
     title: "Project Two",
     type: "Discipline — placeholder",
-    year: "20XX",
+    year: "2025",
     role: "Role — placeholder",
     timeline: "Timeline — placeholder",
     tools: "Tools — placeholder",
