@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Archivo, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-  import Header from "./components/Header";
-    import CustomCursor from "./components/CustomCursor";
+import Header from "./components/Header";
+import CustomCursor from "./components/CustomCursor";
 
 const bricolage = Archivo({
   subsets: ["latin"],
@@ -24,9 +24,31 @@ const jetbrains = JetBrains_Mono({
   display: "swap",
 });
 
+// Change this when you move to a custom domain or a different host
+const siteUrl = "https://portfolio-nine-ruddy-32.vercel.app";
+
+// PLACEHOLDER: rewrite this description in your own words
+const description = "Portfolio of Elijah Opeyemi, UI/UX designer.";
+
 export const metadata: Metadata = {
-  title: "Elijah Opeyemi — Portfolio",
-  description: "UX/UI designer portfolio",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Elijah Opeyemi — Portfolio",
+    template: "%s — Elijah Opeyemi",
+  },
+  description,
+  openGraph: {
+    title: "Elijah Opeyemi — Portfolio",
+    description,
+    url: siteUrl,
+    siteName: "Elijah Opeyemi",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Elijah Opeyemi — Portfolio",
+    description,
+  },
 };
 
 export default function RootLayout({
@@ -37,11 +59,11 @@ export default function RootLayout({
       lang="en"
       className={`${bricolage.variable} ${instrument.variable} ${jetbrains.variable}`}
     >
-          <body className="antialiased">
-    <Header />
-    <CustomCursor />
-    {children}
-  </body>
+      <body className="antialiased">
+        <Header />
+        <CustomCursor />
+        {children}
+      </body>
     </html>
   );
 }
