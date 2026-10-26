@@ -48,7 +48,7 @@ export default function Header() {
             <svg
               aria-hidden="true"
               viewBox="0 0 44 48"
-              className="pointer-events-none absolute left-1/2 top-1/2 h-[2.3em] w-[2.1em] -translate-x-1/2 -translate-y-[46%] overflow-visible"
+              className="pointer-events-none absolute left-1/2 top-1/2 h-[2.3em] w-[1.9em] -translate-x-1/2 -translate-y-[46%] overflow-visible"
             >
               {/* Main blob */}
               <path
