@@ -12,7 +12,7 @@ export default function ContactCTA() {
       className="border-t border-line px-6 py-24 md:px-16 md:py-32"
     >
       <p className="font-mono text-sm uppercase tracking-widest text-accent">
-        03 / Contact
+        Open Invitation
       </p>
 
       {/* Placeholder wording: rewrite in your own voice */}

@@ -29,9 +29,7 @@ export default function Hero() {
         {...fadeUp(0.2)}
         className="flex items-center justify-between gap-1 font-mono text-[9px] uppercase tracking-normal text-foreground/60 md:grid md:grid-cols-3 md:text-xs md:tracking-widest"
       >
-        <span className="whitespace-nowrap">
-          Portfolio<span className="hidden md:inline"> — Issue 01</span>
-        </span>
+        <span className="whitespace-nowrap">Portfolio</span>
         <span className="whitespace-nowrap md:text-center">
           UI/UX Designer / Vibe Coder
         </span>

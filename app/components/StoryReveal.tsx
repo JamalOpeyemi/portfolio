@@ -9,9 +9,17 @@ import {
   type MotionValue,
 } from "framer-motion";
 
-// PLACEHOLDER: replace with 2-3 sentences in your own voice.
-const text =
-  "Placeholder story. Write two or three sentences here about how you think about design and who you design for. Each word lights up as you scroll.";
+// Your story, one line per entry.
+const lines = [
+  "My curiosity about people shapes the way I see the world.",
+  "It drives me to question, explore, and understand problems more deeply.",
+  "Through design, I turn those insights into meaningful digital experiences.",
+  "Always balancing purpose, function, and visual expression.",
+];
+
+// SPEED SETTING: how much scrolling the reveal takes.
+// Bigger number = slower reveal. Try 300 or 400 if it's still too fast.
+const scrollLength = "h-[260vh] md:h-[320vh]";
 
 function Word({
   children,
@@ -27,7 +35,7 @@ function Word({
   const opacity = useTransform(
     progress,
     range,
-    reduceMotion ? [1, 1] : [0.25, 1]
+    reduceMotion ? [1, 1] : [0.2, 1]
   );
 
   return (
@@ -38,35 +46,46 @@ function Word({
 }
 
 export default function StoryReveal() {
-  const ref = useRef<HTMLParagraphElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion() ?? false;
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 0.9", "end 0.6"],
+    offset: ["start start", "end end"],
   });
 
-  const words = text.split(" ");
+  const allWords = lines.map((line) => line.split(" "));
+  const total = allWords.flat().length;
+
+  let counter = 0;
 
   return (
-    <p
-      ref={ref}
-      className="max-w-5xl text-3xl font-semibold leading-tight tracking-tight md:text-6xl"
-    >
-      {words.map((word, i) => {
-        const start = i / words.length;
-        const end = start + 1 / words.length;
-        return (
-          <Word
-            key={i}
-            progress={scrollYProgress}
-            range={[start, end]}
-            reduceMotion={reduceMotion}
-          >
-            {word}
-          </Word>
-        );
-      })}
-    </p>
+    <div ref={ref} className={`relative ${scrollLength}`}>
+      <div className="sticky top-24 md:top-32">
+        <div className="max-w-5xl space-y-5 text-2xl font-semibold leading-tight tracking-tight md:space-y-8 md:text-5xl">
+          {allWords.map((words, lineIndex) => (
+            <p key={lineIndex}>
+              {words.map((word, wordIndex) => {
+                const i = counter++;
+                // Words light up between 5% and 90% of the scroll,
+                // each one overlapping the next a little.
+                const start = 0.05 + (i / total) * 0.85;
+                const end = start + (2 / total) * 0.85;
+                return (
+                  <Word
+                    key={wordIndex}
+                    progress={scrollYProgress}
+                    range={[start, Math.min(end, 0.95)]}
+                    reduceMotion={reduceMotion}
+                  >
+                    {word}
+                  </Word>
+                );
+              })}
+            </p>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
