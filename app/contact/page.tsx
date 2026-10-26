@@ -1,17 +1,14 @@
 import type { Metadata } from "next";
-import ContactCTA from "../components/ContactCTA";
-
-
-
+import ContactHero from "../components/ContactHero";
 
 export const metadata: Metadata = {
-  title: "Contact — Elijah Opeyemi",
+  title: "Contact",
 };
 
 export default function ContactPage() {
   return (
     <main>
-      <ContactCTA />
+      <ContactHero />
     </main>
   );
 }
