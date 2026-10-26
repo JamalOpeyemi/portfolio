@@ -50,11 +50,15 @@ export default function AboutPage() {
 
         <div className="mt-16 grid gap-10 md:grid-cols-[1fr_2fr]">
           {/* PORTRAIT: placeholder box. Swap for your image (see steps below). */}
-          <RevealBlock className="aspect-[3/4] w-full max-w-xs border border-foreground/30 bg-[#1c1c1e]">
-            <div className="flex h-full flex-col items-center justify-center gap-1 text-center font-mono text-sm uppercase tracking-widest text-foreground/80">
-              <span>Portrait</span>
-              <span className="text-foreground/50">Placeholder</span>
-            </div>
+                    <RevealBlock className="relative aspect-[3/4] w-full max-w-xs overflow-hidden border border-foreground/30 bg-[#1c1c1e]">
+            <Image
+              src="/portrait.jpg"
+              alt="Portrait of Elijah Opeyemi"
+              fill
+              sizes="(min-width: 768px) 320px, 100vw"
+              className="object-cover"
+              priority
+            />
           </RevealBlock>
 
           <div className="max-w-2xl space-y-6 text-lg text-foreground/70 md:text-xl">
