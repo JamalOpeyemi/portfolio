@@ -15,7 +15,7 @@ export const projects: Project[] = [
   {
     slug: "Elysian",
     id: "01",
-    title: "Project One",
+    title: "Elysian",
     type: "Discipline — placeholder",
     year: "2026",
     role: "Role — placeholder",
@@ -27,7 +27,7 @@ export const projects: Project[] = [
   {
     slug: "Mimar-Tech",
     id: "02",
-    title: "Project Two",
+    title: "Mimar Tech",
     type: "Discipline — placeholder",
     year: "2025",
     role: "Role — placeholder",
@@ -37,9 +37,9 @@ export const projects: Project[] = [
       "Placeholder summary. One or two sentences on the problem and your contribution.",
   },
   {
-    slug: "project-three",
+    slug: "ParqOS",
     id: "03",
-    title: "Project Three",
+    title: "ParqOS",
     type: "Discipline — placeholder",
     year: "20XX",
     role: "Role — placeholder",
