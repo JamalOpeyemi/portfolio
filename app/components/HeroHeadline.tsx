@@ -12,7 +12,7 @@ export default function HeroHeadline() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <h1 className="relative z-10 w-full whitespace-nowrap text-[length:calc((100vw_-_3rem)/4.7)] font-bold uppercase leading-[1] tracking-tighter md:text-[length:min(calc((100vw_-_8rem)/4.8),calc((100svh_-_18rem)/1.9))] md:leading-[0.9]">
+    <h1 className="relative z-10 w-full whitespace-nowrap text-[length:calc((100vw_-_3rem)/4.7)] font-medium uppercase leading-[1] tracking-tighter md:text-[length:min(calc((100vw_-_8rem)/4.8),calc((100svh_-_18rem)/1.9))] md:leading-[0.9]">
       {lines.map((line, i) => (
         <span
           key={line.text}
