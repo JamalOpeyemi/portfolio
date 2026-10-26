@@ -1,39 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-
-const services = [
-  {
-    number: "01",
-    title: "UI/UX & Product Design",
-    description:
-      "Creating intuitive, user-centred digital products that balance real needs with thoughtful design.",
-  },
-  {
-    number: "02",
-    title: "Web Design",
-    description:
-      "Designing bold, responsive websites that combine visual storytelling with seamless experiences.",
-  },
-  {
-    number: "03",
-    title: "Design Systems",
-    description:
-      "Building consistent, scalable design systems that bring clarity and cohesion to digital products.",
-  },
-  {
-    number: "04",
-    title: "Creative Development",
-    description:
-      "Turning design concepts into functional digital experiences through code and AI-assisted workflows.",
-  },
-  {
-    number: "05",
-    title: "Interaction & Motion",
-    description:
-      "Bringing interfaces to life through purposeful animations, micro-interactions, and fluid transitions.",
-  },
-];
+import { services } from "../data/services";
 
 export default function Services() {
   const reduceMotion = useReducedMotion();
@@ -56,9 +25,15 @@ export default function Services() {
             </span>
             .
           </h2>
+          <Link
+            href="/services"
+            className="mt-8 inline-block font-mono text-xs uppercase tracking-widest text-foreground/60 transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-accent"
+          >
+            See all services →
+          </Link>
         </div>
 
-        {/* Right: the cards */}
+        {/* Right: each card links to its section on the Services page */}
         <ul className="flex flex-col gap-4 md:gap-5">
           {services.map((service) => (
             <motion.li
@@ -67,22 +42,33 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="group border border-line bg-[#151516] p-6 transition-colors duration-300 hover:border-accent md:p-8"
             >
-              {/* Outlined number: fills with orange on hover */}
-              <span
-                aria-hidden="true"
-                className="block text-6xl font-bold leading-none text-transparent transition-colors duration-300 [-webkit-text-stroke:1px_rgba(242,240,235,0.4)] group-hover:text-accent group-hover:[-webkit-text-stroke-color:#ff4d1f] md:text-7xl"
+              <Link
+                href={`/services#${service.slug}`}
+                className="group block border border-line bg-[#151516] p-6 transition-colors duration-300 hover:border-accent focus-visible:outline-2 focus-visible:outline-accent md:p-8"
               >
-                {service.number}
-              </span>
+                <div className="flex items-start justify-between">
+                  <span
+                    aria-hidden="true"
+                    className="block text-6xl font-bold leading-none text-transparent transition-colors duration-300 [-webkit-text-stroke:1px_rgba(242,240,235,0.4)] group-hover:text-accent group-hover:[-webkit-text-stroke-color:#ff4d1f] md:text-7xl"
+                  >
+                    {service.number}
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className="font-mono text-xl text-foreground/40 transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-accent"
+                  >
+                    ↗
+                  </span>
+                </div>
 
-              <h3 className="mt-10 text-2xl font-bold tracking-tight md:mt-14 md:text-3xl">
-                {service.title}
-              </h3>
-              <p className="mt-3 max-w-md text-base leading-snug text-foreground/70 md:text-lg">
-                {service.description}
-              </p>
+                <h3 className="mt-10 text-2xl font-bold tracking-tight md:mt-14 md:text-3xl">
+                  {service.title}
+                </h3>
+                <p className="mt-3 max-w-md text-base leading-snug text-foreground/70 md:text-lg">
+                  {service.description}
+                </p>
+              </Link>
             </motion.li>
           ))}
         </ul>
