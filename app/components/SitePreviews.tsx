@@ -156,13 +156,30 @@ export function PhonePreview() {
         loading="lazy"
         className="h-[560px] w-full rounded-[1.8rem] bg-background"
         onLoad={(e) => {
-          // Inside the phone: normal system cursor, no second custom cursor
-          const doc = e.currentTarget.contentDocument;
+          const frame = e.currentTarget;
+          const doc = frame.contentDocument;
           if (!doc) return;
+
+          // Inside the phone: hide the native pointer and the site's own cursor,
+          // so only your main cursor is visible.
           const style = doc.createElement("style");
           style.textContent =
-            "html, body, * { cursor: auto !important; } a, button, [role='button'] { cursor: pointer !important; } .fixed.pointer-events-none { display: none !important; }";
+            "html, body, * { cursor: none !important; } .fixed.pointer-events-none { display: none !important; }";
           doc.head.appendChild(style);
+
+          // Pass the mouse position from inside the phone to your page,
+          // so your cursor keeps following smoothly.
+          const forward = (ev: MouseEvent) => {
+            const box = frame.getBoundingClientRect();
+            document.dispatchEvent(
+              new MouseEvent("mousemove", {
+                clientX: box.left + ev.clientX,
+                clientY: box.top + ev.clientY,
+                bubbles: true,
+              })
+            );
+          };
+          doc.addEventListener("mousemove", forward);
         }}
       />
     </div>
