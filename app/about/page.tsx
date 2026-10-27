@@ -36,7 +36,7 @@ export default function AboutPage() {
           </RevealBlock>
 
           {/* Size = space left beside the portrait, divided by the longest line */}
-          <h1 className="order-1 whitespace-nowrap text-[length:calc((100vw_-_3rem)/9.6)] font-medium uppercase leading-[1.08] tracking-tighter md:order-2 md:text-[length:calc((100vw_-_39rem)/6.2)]">
+          <h1 className="order-1 whitespace-nowrap text-[length:calc((100vw_-_3rem)/9.6)] font-medium uppercase leading-[1.08] tracking-tighter md:order-2 md:text-[length:calc((100vw_-_39rem)/7)]">
             <span className="block">I like ideas</span>
             <span className="block">better when</span>
             <span className="block">
