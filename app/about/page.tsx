@@ -23,7 +23,7 @@ export default function AboutPage() {
           About
         </p>
 
-        <div className="mt-6 grid gap-10 md:mt-10 md:grid-cols-[26rem_1fr] md:items-center md:gap-12">
+        <div className="mt-6 grid gap-10 md:mt-10 md:grid-cols-[26rem_1fr] md:items-center md:gap-20">
           <RevealBlock className="relative order-2 aspect-[3/4] w-full max-w-sm overflow-hidden border border-foreground/30 bg-[#1c1c1e] md:order-1 md:max-w-none">
             <Image
               src="/portrait.jpg"
@@ -36,7 +36,7 @@ export default function AboutPage() {
           </RevealBlock>
 
           {/* Size = space left beside the portrait, divided by the longest line */}
-          <h1 className="order-1 whitespace-nowrap text-[length:calc((100vw_-_3rem)/9.6)] font-medium uppercase leading-[0.92] tracking-tighter md:order-2 md:text-[length:calc((100vw_-_37rem)/7.4)]">
+          <h1 className="order-1 whitespace-nowrap text-[length:calc((100vw_-_3rem)/9.6)] font-medium uppercase leading-[1.08] tracking-tighter md:order-2 md:text-[length:calc((100vw_-_39rem)/7.4)]">
             <span className="block">I like ideas</span>
             <span className="block">better when</span>
             <span className="block">

@@ -5,9 +5,10 @@ import { motion, useReducedMotion } from "framer-motion";
 import FlipText from "./FlipText";
 import { services } from "../data/services";
 
+// Each line is a list of words, so we can control the space between them
 const lines = [
-  { text: "What I", align: "" },
-  { text: "Do.", align: "text-right" },
+  { words: ["What", "I"], align: "" },
+  { words: ["Do."], align: "text-right" },
 ];
 
 export default function ServicesPage() {
@@ -37,7 +38,7 @@ export default function ServicesPage() {
         <h1 className="mt-10 w-full whitespace-nowrap text-[length:calc((100vw_-_3rem)/5.2)] font-medium uppercase leading-[1] tracking-tighter md:mt-14 md:text-[length:calc((100vw_-_8rem)/6)] md:leading-[0.9]">
           {lines.map((line, i) => (
             <span
-              key={line.text}
+              key={line.words.join(" ")}
               className={`block overflow-hidden pb-[0.05em] ${line.align}`}
             >
               <motion.span
@@ -50,18 +51,34 @@ export default function ServicesPage() {
                   ease: [0.22, 1, 0.36, 1],
                 }}
               >
-                <FlipText text={line.text} />
+                {line.words.map((word, w) => (
+                  <span
+                    key={word}
+                    className={`inline-block ${w > 0 ? "ml-[0.28em]" : ""}`}
+                  >
+                    <FlipText text={word} />
+                  </span>
+                ))}
               </motion.span>
             </span>
           ))}
         </h1>
 
-        <motion.p
+        {/* Description with a scroll cue beside it */}
+        <motion.div
           {...fadeUp(0.6)}
-          className="mt-8 max-w-md text-lg leading-snug text-foreground/70 md:mt-10"
+          className="mt-8 flex flex-col gap-6 md:mt-10 md:flex-row md:items-end md:justify-between"
         >
-          Four ways I can help, and how each one works.
-        </motion.p>
+          <p className="max-w-md text-lg leading-snug text-foreground/70">
+            Four ways I can help, and how each one works.
+          </p>
+          <div
+            aria-hidden="true"
+            className="font-mono text-xs uppercase tracking-widest text-foreground/50"
+          >
+            Scroll <span className="scroll-cue-arrow ml-2">↓</span>
+          </div>
+        </motion.div>
       </section>
 
       {/* One section per service. The id lets the landing page jump straight here. */}

@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 
 const email = "elijahtemiye46@gmail.com";
 
@@ -19,6 +22,8 @@ const links = [
 ];
 
 export default function ContactCTA() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <section
       id="contact"
@@ -29,17 +34,23 @@ export default function ContactCTA() {
         Open invitation
       </p>
 
-      {/* Headline: links to /contact, rises a little on hover */}
-      <Link
-        href="/contact"
-        aria-label="Let's make something. Go to the contact page"
-        className="mt-10 block w-full whitespace-nowrap text-[length:calc((100vw_-_3rem)/7.2)] font-medium uppercase leading-[1] tracking-tighter transition-transform duration-300 ease-out hover:-translate-y-2 focus-visible:outline-2 focus-visible:outline-accent md:mt-12 md:text-[length:calc((100vw_-_8rem)/7.4)] md:leading-[0.9]"
+      {/* Headline: links to /contact, rises on hover */}
+      <motion.div
+        whileHover={reduceMotion ? undefined : { y: -14 }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        className="mt-10 md:mt-12"
       >
-        <span className="block pb-[0.05em]">Let's make</span>
-        <span className="block pb-[0.05em] text-right font-serif font-normal normal-case italic text-accent">
-          something.
-        </span>
-      </Link>
+        <Link
+          href="/contact"
+          aria-label="Let's make something. Go to the contact page"
+          className="block w-full whitespace-nowrap text-[length:calc((100vw_-_3rem)/7.2)] font-medium uppercase leading-[1] tracking-tighter focus-visible:outline-2 focus-visible:outline-accent md:text-[length:calc((100vw_-_8rem)/7.4)] md:leading-[0.9]"
+        >
+          <span className="block pb-[0.05em]">Let's make</span>
+          <span className="block pb-[0.05em] text-right font-serif font-normal normal-case italic text-accent">
+            something.
+          </span>
+        </Link>
+      </motion.div>
 
       {/* Email, LinkedIn, GitHub: same style, same row */}
       <ul className="mt-12 flex flex-col items-start gap-4 font-mono text-sm uppercase tracking-widest md:mt-16 md:flex-row md:items-center md:gap-0 md:divide-x md:divide-line">
