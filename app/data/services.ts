@@ -1,22 +1,3 @@
-// PLACEHOLDER: only used by "Interaction & Motion" until you send its steps.
-const placeholderSteps = [
-  {
-    title: "Placeholder step one",
-    text: "Placeholder: describe what happens first and what you need from the client.",
-  },
-  {
-    title: "Placeholder step two",
-    text: "Placeholder: describe the next stage of your process.",
-  },
-  {
-    title: "Placeholder step three",
-    text: "Placeholder: describe how you build or refine the work.",
-  },
-  {
-    title: "Placeholder step four",
-    text: "Placeholder: describe what the client receives at the end.",
-  },
-];
 
 export const services = [
   {
@@ -118,13 +99,5 @@ export const services = [
         text: "I check responsiveness and functionality, refine the experience, fix issues, and deploy the finished website when included in the project scope.",
       },
     ],
-  },
-  {
-    number: "05",
-    slug: "interaction-motion",
-    title: "Interaction & Motion",
-    description:
-      "Bringing interfaces to life through purposeful animations, micro-interactions, and fluid transitions.",
-    steps: placeholderSteps,
   },
 ];

@@ -60,7 +60,7 @@ export default function ServicesPage() {
           {...fadeUp(0.6)}
           className="mt-8 max-w-md text-lg leading-snug text-foreground/70 md:mt-10"
         >
-          Five ways I can help, and how each one works.
+          Four ways I can help, and how each one works.
         </motion.p>
       </section>
 
