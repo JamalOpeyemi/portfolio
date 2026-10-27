@@ -48,4 +48,17 @@ export const projects: Project[] = [
     summary:
       "Placeholder summary. One or two sentences on the problem and your contribution.",
   },
+    {
+    slug: "this-site",
+    id: "04",
+    title: "This Site",
+    type: "Portfolio / Development",
+    year: "2026",
+    role: "Designer & Developer (solo)",
+    // PLACEHOLDER: replace with your real timeline, e.g. "X weeks"
+    timeline: "Timeline — placeholder",
+    tools: "Next.js, TypeScript, Tailwind CSS, Framer Motion",
+    summary:
+      "My own portfolio, designed and built end to end: a dark editorial identity, expressive motion, and a responsive site shipped with AI-assisted workflows.",
+  },
 ];
