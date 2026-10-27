@@ -33,10 +33,11 @@ function Shot({
       className={`relative w-full overflow-hidden border border-black/15 bg-[#f1f1ee] ${className}`}
       style={{ aspectRatio: ratio }}
     >
-      <Image
+            <Image
         src={src}
         alt={alt}
         fill
+        unoptimized
         sizes="(min-width: 768px) 50vw, 100vw"
         className={fit === "top" ? "object-cover object-top" : "object-contain"}
       />
