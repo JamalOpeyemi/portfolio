@@ -12,32 +12,31 @@ const toolGroups = [
   { label: "Design", tools: ["Figma", "Framer"] },
   { label: "Development", tools: ["Next.js", "React", "Tailwind CSS"] },
   { label: "AI workflows", tools: ["ChatGPT", "Claude"] },
-  { label: "Build & ship", tools: ["VS Code", "Git", "GitHub", "Vercel"] },
 ];
 
 export default function AboutPage() {
   return (
     <main>
-      {/* Introduction */}
+      {/* Introduction: headline and portrait side by side */}
       <section className="px-6 pb-20 pt-12 md:px-16 md:pb-28">
         <p className="font-mono text-sm uppercase tracking-widest text-foreground/60">
           About
         </p>
-        <h1 className="mt-6 text-[10vw] font-medium uppercase leading-[0.92] tracking-tighter md:text-[6.5vw]">
-          I like ideas better when they{" "}
-          <span className="font-serif font-normal normal-case italic text-accent">
-            exist.
-          </span>
-        </h1>
 
-        {/* Bigger portrait: right-aligned on desktop */}
-        <div className="mt-14 md:mt-16 md:flex md:justify-end">
-          <RevealBlock className="relative aspect-[3/4] w-full max-w-md overflow-hidden border border-foreground/30 bg-[#1c1c1e] md:max-w-lg">
+        <div className="mt-6 grid gap-10 md:mt-10 md:grid-cols-[3fr_2fr] md:items-end md:gap-12">
+          <h1 className="text-[10vw] font-medium uppercase leading-[0.92] tracking-tighter md:text-[4.6vw]">
+            I like ideas better when they{" "}
+            <span className="font-serif font-normal normal-case italic text-accent">
+              exist.
+            </span>
+          </h1>
+
+          <RevealBlock className="relative aspect-[3/4] w-full max-w-sm overflow-hidden border border-foreground/30 bg-[#1c1c1e] md:justify-self-end">
             <Image
               src="/portrait.jpg"
               alt="Portrait of Elijah Opeyemi"
               fill
-              sizes="(min-width: 768px) 512px, 100vw"
+              sizes="(min-width: 768px) 384px, 100vw"
               className="object-cover"
               priority
             />
