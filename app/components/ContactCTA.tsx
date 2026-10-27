@@ -1,5 +1,4 @@
 import Link from "next/link";
-import FlipText from "./FlipText";
 
 const email = "elijahtemiye46@gmail.com";
 
@@ -19,11 +18,6 @@ const links = [
   },
 ];
 
-const lines = [
-  { text: "Let's make", align: "" },
-  { text: "something.", align: "text-right" },
-];
-
 export default function ContactCTA() {
   return (
     <section
@@ -35,20 +29,16 @@ export default function ContactCTA() {
         Open invitation
       </p>
 
-      {/* Headline: hero-style pattern, smaller. The whole thing links to /contact */}
+      {/* Headline: links to /contact, rises a little on hover */}
       <Link
         href="/contact"
         aria-label="Let's make something. Go to the contact page"
-        className="mt-10 block w-full whitespace-nowrap text-[length:calc((100vw_-_3rem)/7.2)] font-medium uppercase leading-[1] tracking-tighter transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-accent md:mt-12 md:text-[length:calc((100vw_-_8rem)/7.4)] md:leading-[0.9]"
+        className="mt-10 block w-full whitespace-nowrap text-[length:calc((100vw_-_3rem)/7.2)] font-medium uppercase leading-[1] tracking-tighter transition-transform duration-300 ease-out hover:-translate-y-2 focus-visible:outline-2 focus-visible:outline-accent md:mt-12 md:text-[length:calc((100vw_-_8rem)/7.4)] md:leading-[0.9]"
       >
-        {lines.map((line) => (
-          <span
-            key={line.text}
-            className={`block pb-[0.05em] ${line.align}`}
-          >
-            <FlipText text={line.text} />
-          </span>
-        ))}
+        <span className="block pb-[0.05em]">Let's make</span>
+        <span className="block pb-[0.05em] text-right font-serif font-normal normal-case italic text-accent">
+          something.
+        </span>
       </Link>
 
       {/* Email, LinkedIn, GitHub: same style, same row */}
