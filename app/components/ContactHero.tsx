@@ -34,7 +34,7 @@ export default function ContactHero() {
   return (
     <section className="px-6 pb-16 pt-6 md:px-16 md:pb-24 md:pt-8">
       {/* Hero: fills exactly one screen, so the form starts below the fold */}
-      <div className="flex min-h-[calc(100svh-5rem)] flex-col md:min-h-[calc(100svh-6rem)]">
+      <div className="flex min-h-[calc(100svh-9rem)] flex-col md:min-h-[calc(100svh-10rem)]">
         <motion.p
           {...fadeUp(0.1)}
           className="font-mono text-xs uppercase tracking-widest text-foreground/60"
@@ -85,7 +85,7 @@ export default function ContactHero() {
       </div>
 
       {/* Full-width form: only visible after scrolling */}
-      <div className="mt-10 border-t border-line pt-10 md:mt-12 md:pt-14">
+      <div className="mt-16 border-t border-line pt-10 md:mt-20 md:pt-14">
         <ContactForm />
       </div>
 
