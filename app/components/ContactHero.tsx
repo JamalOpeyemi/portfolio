@@ -64,12 +64,21 @@ export default function ContactHero() {
         ))}
       </h1>
 
-      <motion.p
+      {/* Invitation with a scroll cue beside it */}
+      <motion.div
         {...fadeUp(0.6)}
-        className="mt-8 max-w-md text-lg leading-snug text-foreground/70 md:mt-10"
+        className="mt-8 flex flex-col gap-6 md:mt-10 md:flex-row md:items-end md:justify-between"
       >
-        {invitation}
-      </motion.p>
+        <p className="max-w-md text-lg leading-snug text-foreground/70">
+          {invitation}
+        </p>
+        <div
+          aria-hidden="true"
+          className="font-mono text-xs uppercase tracking-widest text-foreground/50"
+        >
+          Scroll <span className="scroll-cue-arrow ml-2">↓</span>
+        </div>
+      </motion.div>
 
       {/* Full-width form */}
       <motion.div
