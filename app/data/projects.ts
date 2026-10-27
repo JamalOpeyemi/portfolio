@@ -24,17 +24,17 @@ export const projects: Project[] = [
     summary:
       "Placeholder summary. One or two sentences on the problem and your contribution.",
   },
-  {
-    slug: "Mimar-Tech",
+    {
+    slug: "mimar-tech",
     id: "02",
     title: "Mimar Tech",
-    type: "Discipline — placeholder",
+    type: "Product / UI/UX Design",
     year: "2025",
-    role: "Role — placeholder",
-    timeline: "Timeline — placeholder",
-    tools: "Tools — placeholder",
+    role: "UI/UX Designer (sole designer, internship)",
+    timeline: "March to May 2025",
+    tools: "Figma",
     summary:
-      "Placeholder summary. One or two sentences on the problem and your contribution.",
+      "Redesigning a BIM collaboration platform that had been coded without any UI/UX design: a dashboard that fits on one screen, and onboarding for invited teams.",
   },
   {
     slug: "ParqOS",
