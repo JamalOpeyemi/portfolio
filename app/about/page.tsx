@@ -24,7 +24,7 @@ export default function AboutPage() {
         </p>
 
         <div className="mt-6 grid gap-10 md:mt-10 md:grid-cols-[3fr_2fr] md:items-end md:gap-12">
-          <h1 className="text-[10vw] font-medium uppercase leading-[0.92] tracking-tighter md:text-[4.6vw]">
+          <h1 className="text-[10vw] font-medium uppercase leading-[0.92] tracking-tighter md:text-[6vw]">
             I like ideas better when they{" "}
             <span className="font-serif font-normal normal-case italic text-accent">
               exist.
