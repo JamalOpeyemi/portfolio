@@ -54,7 +54,7 @@ export default function ServicesPage() {
                 {line.words.map((word, w) => (
                   <span
                     key={word}
-                    className={`inline-block ${w > 0 ? "ml-[0.28em]" : ""}`}
+                    className={`inline-block ${w > 0 ? "ml-[0.30em]" : ""}`}
                   >
                     <FlipText text={word} />
                   </span>
