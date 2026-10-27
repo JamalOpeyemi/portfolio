@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { projects } from "../../data/projects";
+import { SiteTour, PhonePreview } from "../../components/SitePreviews";
 
 export const metadata: Metadata = {
   title: "This Site",
@@ -73,10 +74,9 @@ export default function ThisSitePage() {
           {project.summary}
         </p>
 
-        <dl className="mt-12 grid grid-cols-2 gap-6 border-t border-line pt-6 font-mono text-xs uppercase tracking-widest md:grid-cols-4">
+        <dl className="mt-12 grid grid-cols-2 gap-6 border-t border-line pt-6 font-mono text-xs uppercase tracking-widest md:grid-cols-3">
           {[
             ["Role", project.role],
-            ["Timeline", project.timeline],
             ["Tools", project.tools],
             ["Year", project.year],
           ].map(([label, value]) => (
@@ -86,6 +86,11 @@ export default function ThisSitePage() {
             </div>
           ))}
         </dl>
+      </section>
+
+            {/* Overview: the live site, touring itself */}
+      <section className="px-6 pb-20 md:px-16 md:pb-28">
+        <SiteTour />
       </section>
 
       {/* The brief */}
