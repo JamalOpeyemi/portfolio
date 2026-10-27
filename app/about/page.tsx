@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 const toolGroups = [
-  { label: "Design", tools: ["Figma"] },
+  { label: "Design", tools: ["Figma", "Framer"] },
   { label: "Development", tools: ["Next.js", "React", "Tailwind CSS"] },
   { label: "AI workflows", tools: ["ChatGPT", "Claude"] },
   { label: "Build & ship", tools: ["VS Code", "Git", "GitHub", "Vercel"] },
@@ -25,34 +25,23 @@ export default function AboutPage() {
         </p>
         <h1 className="mt-6 text-[10vw] font-medium uppercase leading-[0.92] tracking-tighter md:text-[6.5vw]">
           I like ideas better when they{" "}
-          <span className="font-serif font-normal normal-case italic">
+          <span className="font-serif font-normal normal-case italic text-accent">
             exist.
           </span>
         </h1>
 
-        <div className="mt-14 grid gap-10 md:mt-16 md:grid-cols-[1fr_2fr] md:items-end">
-          <RevealBlock className="relative aspect-[3/4] w-full max-w-xs overflow-hidden border border-foreground/30 bg-[#1c1c1e]">
+        {/* Bigger portrait: right-aligned on desktop */}
+        <div className="mt-14 md:mt-16 md:flex md:justify-end">
+          <RevealBlock className="relative aspect-[3/4] w-full max-w-md overflow-hidden border border-foreground/30 bg-[#1c1c1e] md:max-w-lg">
             <Image
               src="/portrait.jpg"
               alt="Portrait of Elijah Opeyemi"
               fill
-              sizes="(min-width: 768px) 320px, 100vw"
+              sizes="(min-width: 768px) 512px, 100vw"
               className="object-cover"
               priority
             />
           </RevealBlock>
-
-          <div className="max-w-2xl space-y-6">
-            <p className="text-2xl font-medium leading-snug md:text-4xl">
-              I’m a designer and creative developer driven by curiosity and the
-              desire to bring ideas to life.
-            </p>
-            <p className="text-lg leading-snug text-foreground/70 md:text-xl">
-              I explore the space between visual design, code, and AI-assisted
-              workflows — turning ideas into digital experiences that are
-              thoughtful, expressive, and functional.
-            </p>
-          </div>
         </div>
       </section>
 
