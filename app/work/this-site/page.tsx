@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { projects } from "../../data/projects";
-import { SiteTour, PhonePreview } from "../../components/SitePreviews";
+import { PhonePreview } from "../../components/SitePreviews";
 
 export const metadata: Metadata = {
   title: "This Site",
@@ -15,6 +15,7 @@ const swatches = [
   { name: "Accent", hex: "#ff4d1f", text: "text-[#0b0b0c]" },
 ];
 
+// EDIT HERE when the site changes
 const decisions = [
   {
     before: "Every section had a numbered tag: 01 / Work, 02 / Story.",
@@ -38,6 +39,7 @@ const decisions = [
   },
 ];
 
+// EDIT HERE when you add animations
 const motion = [
   ["Hero", "Name slides up from behind a mask, then everything else fades in, in sequence."],
   ["Hover flip", "Headlines swap typeface on hover."],
@@ -88,11 +90,6 @@ export default function ThisSitePage() {
         </dl>
       </section>
 
-            {/* Overview: the live site, touring itself */}
-      <section className="px-6 pb-20 md:px-16 md:pb-28">
-        <SiteTour />
-      </section>
-
       {/* The brief */}
       <section className="border-t border-line px-6 py-20 md:px-16 md:py-28">
         <p className="font-mono text-sm uppercase tracking-widest text-foreground/60">
@@ -103,8 +100,9 @@ export default function ThisSitePage() {
           <span className="font-serif font-normal normal-case italic">exists.</span>
         </h2>
         <p className="mt-8 max-w-xl text-lg text-foreground/70">
-          {/* PLACEHOLDER: write 1-2 sentences in your own words on why you built it */}
-          Placeholder: why you built this site and what it needed to say about you.
+          A portfolio is the one project with no client to hide behind. I set
+          myself a brief: say who I am through type, motion and restraint, and
+          make it work on every screen.
         </p>
       </section>
 
@@ -234,26 +232,18 @@ export default function ThisSitePage() {
             </Link>
           </div>
 
-          {/* Phone frame */}
-          <div className="mx-auto w-[300px] rounded-[2.5rem] border border-foreground/30 bg-[#151516] p-3">
-            <iframe
-              src="/"
-              title="Live preview of this portfolio at phone width"
-              loading="lazy"
-              className="h-[560px] w-full rounded-[1.8rem] bg-background"
-            />
-          </div>
+          <PhonePreview />
         </div>
       </section>
 
-      {/* Insights + Next */}
+      {/* What I learned + still to do */}
       <section className="border-t border-line px-6 py-20 md:px-16 md:py-28">
         <p className="font-mono text-sm uppercase tracking-widest text-foreground/60">
           What I learned
         </p>
         <p className="mt-8 max-w-xl text-lg text-foreground/70">
-          {/* PLACEHOLDER: your real lessons, e.g. building with AI-assisted workflows */}
-          Placeholder: what building this with AI-assisted workflows taught you.
+          Responsive design is a system, not a fix. Sizing type from the screen
+          width solved problems that breakpoints kept patching.
         </p>
 
         <p className="mt-16 font-mono text-sm uppercase tracking-widest text-foreground/60">
@@ -265,6 +255,7 @@ export default function ThisSitePage() {
         </ul>
       </section>
 
+      {/* Next project */}
       <section className="border-t border-line px-6 py-20 md:px-16">
         <p className="font-mono text-sm uppercase tracking-widest text-foreground/60">
           Next project
