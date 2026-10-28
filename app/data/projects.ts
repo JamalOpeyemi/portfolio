@@ -36,20 +36,17 @@ export const projects: Project[] = [
     summary:
       "Redesigning a BIM collaboration platform that had been coded without any UI/UX design: a dashboard that fits on one screen, and onboarding for invited teams.",
   },
-    {
+      {
     slug: "parqos",
     id: "03",
     title: "ParqOS",
-    type: "Product / UI/UX Design",
-    // PLACEHOLDER: add the real year
-    year: "2026",
-    role: "Product Designer (brought in to complete the design and flow)",
-    // PLACEHOLDER: add the real timeline
+    type: "Enterprise SaaS / UX/UI Design",
+    year: "2026", // PLACEHOLDER: add the real year
+    role: "UX/UI Designer",
     timeline: "Timeline — placeholder",
-    // PLACEHOLDER: confirm your tools
     tools: "Figma",
     summary:
-      "A parking management system with three views: Operator, Back office and Admin. I was brought in to finish a design that had stalled, and to connect it into one working flow.",
+      "A parking operations platform that brings operators, sites, equipment, pricing and access into one interface. I refined how its complex administrative information is organised and connected.",
   },
     {
     slug: "this-site",
