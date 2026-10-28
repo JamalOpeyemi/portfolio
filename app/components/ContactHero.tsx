@@ -115,7 +115,7 @@ export default function ContactHero() {
         >
           Back to work
         </Link>
-      </div>
+      </Reveal>
     </section>
   );
 }
