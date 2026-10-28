@@ -8,6 +8,7 @@ export type Project = {
   timeline: string;
   tools: string;
   summary: string;
+  image?: string;
 };
 
 // PLACEHOLDERS: replace with your real projects later.
@@ -35,6 +36,7 @@ export const projects: Project[] = [
     tools: "Figma",
     summary:
       "Redesigning a BIM collaboration platform that had been coded without any UI/UX design: a dashboard that fits on one screen, and onboarding for invited teams.",
+      image: "/work/mimar-tech/new-dashboard.png",
   },
       {
     slug: "parqos",
@@ -47,6 +49,7 @@ export const projects: Project[] = [
     tools: "Figma",
     summary:
       "A parking operations platform that brings operators, sites, equipment, pricing and access into one interface. I refined how its complex administrative information is organised and connected.",
+      image: "/work/parqos/operator-overview.png",
   },
     {
     slug: "this-site",

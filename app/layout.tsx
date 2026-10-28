@@ -3,6 +3,7 @@ import { Archivo, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import CustomCursor from "./components/CustomCursor";
+import PageTransition from "./components/PageTransition";
 
 const bricolage = Archivo({
   subsets: ["latin"],
@@ -59,7 +60,8 @@ export default function RootLayout({
       lang="en"
       className={`${bricolage.variable} ${instrument.variable} ${jetbrains.variable}`}
     >
-      <body className="antialiased">
+            <body className="antialiased">
+        <PageTransition />
         <Header />
         <CustomCursor />
         {children}
