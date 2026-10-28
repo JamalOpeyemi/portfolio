@@ -31,7 +31,7 @@ export default function Hero() {
       >
         <span className="whitespace-nowrap">Portfolio</span>
         <span className="whitespace-nowrap md:text-center">
-          UI/UX Designer / Creative Technologist
+          UI/UX Designer / Creative Developer
         </span>
         <span className="whitespace-nowrap md:text-right">
           <span className="hidden md:inline">Based in </span>Malaysia
