@@ -3,6 +3,7 @@ import Image from "next/image";
 import ContactCTA from "../components/ContactCTA";
 import RevealBlock from "../components/RevealBlock";
 import AboutCreative from "../components/AboutCreative";
+import { Reveal } from "../components/CaseKit";
 
 export const metadata: Metadata = {
   title: "About",
@@ -54,9 +55,11 @@ export default function AboutPage() {
 
       {/* Tools & playground */}
       <section className="border-t border-line px-6 py-20 md:px-16 md:py-28">
-        <h2 className="text-4xl font-medium uppercase leading-[0.95] tracking-tighter md:text-[5vw]">
-          Tools &amp; Playground
-        </h2>
+        <Reveal>
+          <h2 className="text-4xl font-medium uppercase leading-[0.95] tracking-tighter md:text-[5vw]">
+            Tools &amp; Playground
+          </h2>
+        </Reveal>
         <p className="mt-6 max-w-md text-lg leading-snug text-foreground/70">
           The tools I use to explore, design, and build.
         </p>

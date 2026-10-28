@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import FlipText from "./FlipText";
 import ContactForm from "./ContactForm";
+import { Reveal } from "./CaseKit";
 
 const email = "elijahtemiye46@gmail.com";
 const linkedin = "https://www.linkedin.com/in/jamalopeyemi";
