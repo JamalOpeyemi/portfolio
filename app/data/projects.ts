@@ -63,5 +63,6 @@ export const projects: Project[] = [
     tools: "Next.js, TypeScript, Tailwind CSS, Framer Motion",
     summary:
       "My own portfolio, designed and built end to end: a dark editorial identity, expressive motion, and a responsive site shipped with AI-assisted workflows.",
+      image: "/work/this-site/cover.png",
   },
 ];

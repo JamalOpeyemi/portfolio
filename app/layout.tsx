@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "./components/Header";
 import CustomCursor from "./components/CustomCursor";
 import PageTransition from "./components/PageTransition";
+import ScrollReveal from "./components/ScrollReveal";
 
 const bricolage = Archivo({
   subsets: ["latin"],
@@ -62,6 +63,7 @@ export default function RootLayout({
     >
             <body className="antialiased">
         <PageTransition />
+        <ScrollReveal />
         <Header />
         <CustomCursor />
         {children}

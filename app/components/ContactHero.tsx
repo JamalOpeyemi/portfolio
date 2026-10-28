@@ -86,12 +86,12 @@ export default function ContactHero() {
       </div>
 
       {/* Full-width form: only visible after scrolling */}
-      <div className="mt-16 border-t border-line pt-10 md:mt-20 md:pt-14">
+      <Reveal className="mt-16 border-t border-line pt-10 md:mt-20 md:pt-14">
         <ContactForm />
-      </div>
+      </Reveal>
 
       {/* Quiet direct routes: email first */}
-      <div className="mt-16 flex flex-col gap-4 border-t border-line pt-8 font-mono text-xs uppercase tracking-widest md:mt-24 md:flex-row md:items-center md:justify-between">
+            <Reveal className="mt-16 flex flex-col gap-4 border-t border-line pt-8 font-mono text-xs uppercase tracking-widest md:mt-24 md:flex-row md:items-center md:justify-between">
         <p className="flex flex-wrap items-center gap-x-6 gap-y-3 text-foreground/60">
           <span>Or write directly</span>
           <a
