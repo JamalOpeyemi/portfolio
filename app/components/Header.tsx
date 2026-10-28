@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { usePathname } from "next/navigation";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+
 
 const links = [
   { href: "/work", label: "Work" },
@@ -14,6 +15,9 @@ const links = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const isActive = (href: string) =>
+    pathname === href || pathname.startsWith(href + "/");
   const reduceMotion = useReducedMotion();
 
   // While the menu is open: lock page scroll and let Escape close it
@@ -80,9 +84,16 @@ export default function Header() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-accent"
+                  aria-current={isActive(link.href) ? "page" : undefined}
+                  className="relative transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-accent"
                 >
                   {link.label}
+                  {isActive(link.href) && (
+                    <span
+                      aria-hidden="true"
+                      className="absolute -bottom-3 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-accent"
+                    />
+                  )}
                 </Link>
               </li>
             ))}
@@ -129,8 +140,11 @@ export default function Header() {
                   <Link
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="block py-6 text-5xl font-bold uppercase tracking-tight transition-colors hover:text-accent"
+                    className="flex items-center gap-4 py-6 text-5xl font-bold uppercase tracking-tight transition-colors hover:text-accent"
                   >
+                    {isActive(link.href) && (
+                      <span aria-hidden="true" className="h-3 w-3 rounded-full bg-accent" />
+                    )}
                     {link.label}
                   </Link>
                 </li>

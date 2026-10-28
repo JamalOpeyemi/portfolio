@@ -99,11 +99,11 @@ export default function CustomCursor() {
       {/* Dot that follows the mouse exactly */}
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none fixed left-0 top-0 z-[100] mix-blend-difference"
+        className="pointer-events-none fixed left-0 top-0 z-[100]"
         style={{ x, y }}
       >
         <motion.div
-          className="-ml-1 -mt-1 h-2 w-2 rounded-full bg-white"
+          className="-ml-1 -mt-1 h-2 w-2 rounded-full bg-accent"
           animate={{
             scale: pressed ? 0.6 : mode === "text" ? 0 : 1,
             opacity: visible ? 1 : 0,
