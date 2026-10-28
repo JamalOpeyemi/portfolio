@@ -30,23 +30,26 @@ export const projects: Project[] = [
     title: "Mimar Tech",
     type: "Product / UI/UX Design",
     year: "2025",
-    role: "UI/UX Designer (sole designer, internship)",
+    role: "UI/UX Designer (sole designer)",
     timeline: "March to May 2025",
     tools: "Figma",
     summary:
       "Redesigning a BIM collaboration platform that had been coded without any UI/UX design: a dashboard that fits on one screen, and onboarding for invited teams.",
   },
-  {
-    slug: "ParqOS",
+    {
+    slug: "parqos",
     id: "03",
     title: "ParqOS",
-    type: "Discipline — placeholder",
-    year: "20XX",
-    role: "Role — placeholder",
+    type: "Product / UI/UX Design",
+    // PLACEHOLDER: add the real year
+    year: "2026",
+    role: "Product Designer (brought in to complete the design and flow)",
+    // PLACEHOLDER: add the real timeline
     timeline: "Timeline — placeholder",
-    tools: "Tools — placeholder",
+    // PLACEHOLDER: confirm your tools
+    tools: "Figma",
     summary:
-      "Placeholder summary. One or two sentences on the problem and your contribution.",
+      "A parking management system with three views: Operator, Back office and Admin. I was brought in to finish a design that had stalled, and to connect it into one working flow.",
   },
     {
     slug: "this-site",
