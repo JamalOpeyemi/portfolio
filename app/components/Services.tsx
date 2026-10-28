@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { services } from "../data/services";
 
+
 export default function Services() {
   const reduceMotion = useReducedMotion();
 
@@ -15,7 +16,7 @@ export default function Services() {
       <div className="grid gap-12 md:grid-cols-[5fr_7fr] md:gap-16">
         {/* Left: stays pinned on desktop while the cards scroll past */}
         <div className="md:sticky md:top-32 md:self-start">
-          <p className="font-mono text-sm uppercase tracking-widest text-accent">
+          <p className="font-mono text-sm uppercase tracking-widest text-foreground/60">
             Services
           </p>
           <h2 className="mt-8 text-[13vw] font-medium leading-[0.9] tracking-tight md:text-[5.5vw]">

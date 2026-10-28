@@ -109,7 +109,7 @@ export default function ContactHero() {
           </a>
         </p>
         <Link
-          href="/#work"
+          href="/work"
           className="text-foreground/50 transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-accent"
         >
           Back to work

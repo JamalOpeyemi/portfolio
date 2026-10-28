@@ -26,7 +26,7 @@ export default async function CaseStudyPage({
       {/* Opening */}
       <section className="px-6 pb-16 pt-12 md:px-16">
         <Link
-          href="/#work"
+          href="/work"
           className="font-mono text-xs uppercase tracking-widest text-foreground/60 transition-colors hover:text-accent"
         >
           ← All work
