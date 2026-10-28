@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { projects } from "../../data/projects";
-import { Reveal, Frame, Eyebrow, Heading, Flow } from "../../components/CaseKit";
+import { Reveal, Frame, NaturalFrame, Eyebrow, Heading, Flow } from "../../components/CaseKit";
 
 export const metadata: Metadata = {
   title: "ParqOS",
@@ -189,10 +189,10 @@ export default function ParqOSPage() {
       {/* 4. Details */}
       <section className="border-t border-line px-6 py-20 md:px-16 md:py-28">
         <Eyebrow>Details: modal, side sheet, toast</Eyebrow>
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          <Frame src={img("detail-modal")} label="Modal with title and subtitle" ratio="4/3" caption="Modal" />
-          <Frame src={img("detail-side-sheet")} label="Side sheet with its parent screen" ratio="4/3" caption="Side sheet" />
-          <Frame src={img("detail-toast")} label="Toast notification" ratio="4/3" caption="Toast notification" />
+        <div className="mt-10 grid items-start gap-6 md:grid-cols-3">
+          <NaturalFrame src={img("detail-modal")} label="Modal with title and subtitle" caption="Modal" />
+          <NaturalFrame src={img("detail-side-sheet")} label="Side sheet with its parent screen" caption="Side sheet" />
+          <NaturalFrame src={img("detail-toast")} label="Toast notification" caption="Toast notification" />
         </div>
       </section>
 

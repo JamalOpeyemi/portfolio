@@ -136,3 +136,35 @@ export function Flow({
     </div>
   );
 }
+
+/* Shows the image whole, at its own proportions (no cropping, no fixed box). */
+export function NaturalFrame({
+  src,
+  label,
+  caption,
+}: {
+  src: string;
+  label: string;
+  caption?: string;
+}) {
+  return (
+    <figure>
+      <div className="overflow-hidden border border-foreground/25 bg-[#151516]">
+        <Image
+          src={src}
+          alt={label}
+          width={0}
+          height={0}
+          unoptimized
+          sizes="(min-width: 768px) 33vw, 100vw"
+          style={{ width: "100%", height: "auto" }}
+        />
+      </div>
+      {caption && (
+        <figcaption className="mt-3 font-mono text-xs uppercase tracking-widest text-foreground/50">
+          {caption}
+        </figcaption>
+      )}
+    </figure>
+  );
+}
