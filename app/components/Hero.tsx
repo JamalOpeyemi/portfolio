@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import HeroHeadline from "./HeroHeadline";
 
 // PLACEHOLDER: paste your real resume link here
-const resumeUrl = "https://canva.link/rvi1rl15wszbjvh";
+const resumeUrl = "https://canva.link/w3cok10c5xd1f77";
 const intro =
   "Somewhere between human behaviour, thoughtful design, and technology — that’s where my work begins.";
 
