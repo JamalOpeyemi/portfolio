@@ -22,29 +22,41 @@ const decisions = [
     after: "Plain labels only. The structure is clear without counting.",
   },
   {
-    before: "Orange on labels, headlines and hovers.",
-    after: "Orange as a signal: one italic word per page, plus hover states.",
-  },
-  {
-    before: "Footer headline stacked and centred, with an orange hover.",
-    after: "Restaged in the hero's pattern: left line, right line, a small lift on hover.",
+    before: "The footer headline was stacked and centred, with an orange hover and a flip.",
+    after: "Restaged in the hero's pattern: one line left, one right, and a small lift on hover.",
   },
   {
     before: "A conventional contact page.",
-    after: "An oversized headline and a full-width form that waits below the fold.",
+    after: "An oversized headline that fills the screen, with a full-width form waiting below the fold.",
   },
   {
-    before: "One list of services.",
-    after: "A Services page where each card jumps to its own process section.",
+    before: "Services were five cards on the landing page.",
+    after: "Each card now jumps to its own process on a full Services page.",
+  },
+  {
+    before: "The hero title was crowded on phones.",
+    after: "It shortens to “UI/UX Designer” on small screens and keeps the full line on larger ones.",
   },
 ];
 
 // EDIT HERE when you add animations
 const motion = [
-  ["Hero", "Name slides up from behind a mask, then everything else fades in, in sequence."],
-  ["Hover flip", "Headlines swap typeface on hover."],
-  ["Story", "Text pins in place and lights up word by word as you scroll."],
-  ["About", "A design-to-code wipe turns a headline into its own markup."],
+  [
+    "Entrance",
+    "The hero name slides up from behind a mask, then everything else fades in, in sequence.",
+  ],
+  [
+    "Scroll",
+    "Sections rise and fade in as you reach them. The story pins in place and lights up word by word, and About wipes a headline into its own code.",
+  ],
+  [
+    "Hover",
+    "Headlines flip typeface, project screenshots follow the cursor in the Work list, and the cursor ring grows over links.",
+  ],
+  [
+    "Navigation",
+    "A dark curtain rises with the page name on every move between pages, and the Services heading stays pinned while its cards scroll.",
+  ],
 ];
 
 export default function ThisSitePage() {
@@ -106,7 +118,7 @@ export default function ThisSitePage() {
         </p>
       </section>
 
-      {/* Direction: palette + type, built live */}
+      {/* Direction */}
       <section className="border-t border-line px-6 py-20 md:px-16 md:py-28">
         <p className="font-mono text-sm uppercase tracking-widest text-foreground/60">
           Direction
@@ -128,7 +140,7 @@ export default function ThisSitePage() {
           ))}
         </div>
 
-        <div className="mt-6 grid gap-px border border-line bg-line md:grid-cols-3">
+        <div className="mt-6 grid gap-px border border-line bg-line md:grid-cols-4">
           <div className="bg-background p-6 md:p-8">
             <p className="font-mono text-xs uppercase tracking-widest text-foreground/50">
               Display: Archivo
@@ -150,6 +162,22 @@ export default function ThisSitePage() {
               Labels: JetBrains Mono
             </p>
             <p className="mt-6 font-mono text-5xl md:text-6xl">Aa</p>
+          </div>
+          <div className="bg-background p-6 md:p-8">
+            <p className="font-mono text-xs uppercase tracking-widest text-foreground/50">
+              Mark
+            </p>
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 32 32"
+              className="mt-6 h-16 w-16 md:h-20 md:w-20"
+            >
+              <rect width="32" height="32" rx="7" fill="#151516" stroke="#2a2a2c" />
+              <rect x="10" y="8" width="4" height="16" fill="#ff4d1f" />
+              <rect x="10" y="8" width="13" height="4" fill="#ff4d1f" />
+              <rect x="10" y="14" width="10" height="4" fill="#ff4d1f" />
+              <rect x="10" y="20" width="13" height="4" fill="#ff4d1f" />
+            </svg>
           </div>
         </div>
       </section>
@@ -206,7 +234,7 @@ export default function ThisSitePage() {
         </p>
       </section>
 
-      {/* Responsive: the live site in a phone */}
+      {/* Responsive */}
       <section className="border-t border-line px-6 py-20 md:px-16 md:py-28">
         <div className="grid gap-12 md:grid-cols-[1fr_auto] md:items-center md:gap-20">
           <div>
@@ -220,9 +248,9 @@ export default function ThisSitePage() {
               </span>
             </h2>
             <p className="mt-8 max-w-md text-lg text-foreground/70">
-              This phone is the real site, running at phone width. Scroll it,
-              open the menu, tap around. The hero name is sized from the
-              screen width, so it fits on one line at every size.
+              This phone is the real site, running at iPhone 15 Pro size.
+              Scroll it, open the menu, tap around. The hero name is sized from
+              the screen width, so it fits on one line at every size.
             </p>
             <Link
               href="/"
