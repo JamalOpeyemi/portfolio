@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import HeroHeadline from "./HeroHeadline";
 
 // PLACEHOLDER: paste your real resume link here
-const resumeUrl = "#";
+const resumeUrl = "https://canva.link/rvi1rl15wszbjvh";
 const intro =
   "Somewhere between human behaviour, thoughtful design, and technology — that’s where my work begins.";
 
@@ -30,8 +30,8 @@ export default function Hero() {
         className="flex items-center justify-between gap-1 font-mono text-[9px] uppercase tracking-normal text-foreground/60 md:grid md:grid-cols-3 md:text-xs md:tracking-widest"
       >
         <span className="whitespace-nowrap">Portfolio</span>
-        <span className="whitespace-nowrap md:text-center">
-          UI/UX Designer / Creative Developer
+                <span className="whitespace-nowrap md:text-center">
+          UI/UX Designer<span className="hidden md:inline"> / Creative Developer</span>
         </span>
         <span className="whitespace-nowrap md:text-right">
           <span className="hidden md:inline">Based in </span>Malaysia

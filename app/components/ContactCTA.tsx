@@ -13,10 +13,9 @@ const links = [
     href: "https://www.linkedin.com/in/jamalopeyemi",
     external: true,
   },
-  // PLACEHOLDER: replace YOUR-USERNAME with your real GitHub username
   {
     label: "GitHub ↗",
-    href: "https://github.com/YOUR-USERNAME",
+    href: "https://github.com/JamalOpeyemi",
     external: true,
   },
 ];
