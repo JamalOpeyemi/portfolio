@@ -13,17 +13,17 @@ export type Project = {
 
 // PLACEHOLDERS: replace with your real projects later.
 export const projects: Project[] = [
-  {
-    slug: "Elysian",
+    {
+    slug: "elysian",
     id: "01",
     title: "Elysian",
-    type: "Discipline — placeholder",
+    type: "E-commerce / UX/UI + Development",
     year: "2026",
-    role: "Role — placeholder",
-    timeline: "Timeline — placeholder",
-    tools: "Tools — placeholder",
+    role: "UX/UI Designer & Front-end Builder",
+    timeline: "",
+    tools: "Framer, Next.js, TypeScript, Tailwind CSS, Motion, Shopify Storefront API",
     summary:
-      "Placeholder summary. One or two sentences on the problem and your contribution.",
+      "A concept online store for a home fragrance brand that sold through Instagram DMs, designed and built from first sketch to a site scoring 96 and 97 on mobile PageSpeed.",
   },
     {
     slug: "mimar-tech",
