@@ -354,3 +354,93 @@ export function ContrastDemo() {
     </div>
   );
 }
+
+/* ---------- Hero: the live site in a laptop and a phone ---------- */
+
+export function DeviceHero({ url }: { url: string }) {
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const [w, setW] = useState(0);
+
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => setW(el.clientWidth));
+    ro.observe(el);
+    setW(el.clientWidth);
+    return () => ro.disconnect();
+  }, []);
+
+  // Laptop: screen renders at 1440x900. Phone: 393x852.
+  const laptopW = w * 0.82;
+  const lsw = laptopW - 14;
+  const lScale = lsw / 1440;
+  const lsh = lsw * 0.625;
+  const laptopH = lsh + 14 + 10;
+
+  const phoneW = w * 0.19;
+  const psw = phoneW - 12;
+  const pScale = psw / 393;
+  const psh = psw * (852 / 393);
+
+  const frameProps = {
+    src: url,
+    tabIndex: -1,
+    loading: "lazy" as const,
+    className: "pointer-events-none absolute left-0 top-0 border-0 bg-white",
+  };
+
+  return (
+    <div
+      role="img"
+      aria-label="The live Elysian home page on a laptop and a phone"
+      className="border border-foreground/25 bg-[#151516] p-4 md:p-10"
+    >
+      <div ref={wrapRef} className="relative w-full" style={{ height: w ? laptopH : 0 }}>
+        {w > 0 && (
+          <>
+            {/* Laptop */}
+            <div className="absolute left-0 top-0" style={{ width: laptopW }}>
+              <div className="overflow-hidden rounded-t-lg border border-foreground/30 bg-black p-[6px]">
+                <div className="relative overflow-hidden" style={{ width: lsw, height: lsh }}>
+                  <iframe
+                    {...frameProps}
+                    title="Elysian home page on a laptop"
+                    style={{
+                      width: 1440,
+                      height: 900,
+                      transform: `scale(${lScale})`,
+                      transformOrigin: "top left",
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="-mx-3 h-[10px] rounded-b-xl bg-foreground/20" />
+            </div>
+
+            {/* Phone */}
+            <div
+              className="absolute bottom-0 right-0 rounded-[1.4rem] border border-foreground/30 bg-black p-[6px]"
+              style={{ width: phoneW }}
+            >
+              <div
+                className="relative overflow-hidden rounded-[1rem]"
+                style={{ width: psw, height: psh }}
+              >
+                <iframe
+                  {...frameProps}
+                  title="Elysian home page on a phone"
+                  style={{
+                    width: 393,
+                    height: 852,
+                    transform: `scale(${pScale})`,
+                    transformOrigin: "top left",
+                  }}
+                />
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}

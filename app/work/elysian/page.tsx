@@ -9,6 +9,7 @@ import {
   JourneyMap,
   PageSpeed,
   ContrastDemo,
+  DeviceHero,
 } from "../../components/ElysianVisuals";
 
 export const metadata: Metadata = {
@@ -96,18 +97,10 @@ const palette = [
   { name: "Muted gold", hex: "#B89A6A", text: "#2C1A0E" },
 ];
 
-const sample = [
-  "Product photos are AI-generated from references of the real products.",
-  "Prices, customer quotes, the founder note, FAQ answers and contact details are sample content.",
-  "The checkout takes no payment and stores nothing.",
-  "The Instagram strip is a static set of images, not a live feed.",
-];
-
 const learned = [
   "Design against the real catalog as early as possible; my first structure changed twice.",
   "Keep the data layer swappable. It let me pause the store without losing the work.",
   "Small details carry the feel: slow motion, readable colour, a calm loading state.",
-  "Being open about what was sample or AI-generated builds more trust than hiding it.",
 ];
 
 export default function ElysianPage() {
@@ -161,11 +154,7 @@ export default function ElysianPage() {
         </a>
 
         <Reveal className="mt-14">
-          <Frame
-            src={shot("hero")}
-            label="The finished Elysian home page"
-            ratio="16/9"
-          />
+          <DeviceHero url={demoUrl} />
         </Reveal>
       </section>
 
@@ -178,10 +167,10 @@ export default function ElysianPage() {
         </Heading>
         <div className="mt-10 grid gap-8 md:grid-cols-2 md:gap-16">
           <p className="max-w-xl text-lg leading-snug text-foreground/70">
-            Elysian is a home fragrance brand run by a founder I know well: my
-            sister. Customers found it on TikTok and Instagram, then had to
-            send a direct message to ask for prices and check stock. Some never
-            got a quick reply and moved on.
+            Elysian is a home fragrance brand building its audience on TikTok
+            and Instagram. Customers who found it there had to send a direct
+            message to ask for prices and check stock. Some never got a quick
+            reply and moved on.
           </p>
           <Reveal>
             <ProblemCard />
@@ -197,9 +186,12 @@ export default function ElysianPage() {
           <Personas />
         </div>
         <p className="mt-6 max-w-2xl text-foreground/60">
-          To be clear about their basis: these are proto-personas, built from
-          first-hand knowledge of the brand and what the founder told me, not
-          from formal interviews. I treated them as hypotheses to test, and a
+          I started with the Empathize phase: tracing the path customers
+          already take, from discovering Elysian on TikTok and Instagram to
+          messaging for prices and stock, and looking for where that path
+          breaks. The founder&apos;s account of her customers added detail on
+          top. From this I wrote two proto-personas. They are hypotheses, not
+          findings: they don&apos;t come from formal interviews, and a
           usability study with real customers is the first thing I would add.
         </p>
         <div className="mt-12">
@@ -256,11 +248,12 @@ export default function ElysianPage() {
         </Heading>
         <div className="mt-10 grid gap-8 md:grid-cols-2 md:gap-16">
           <p className="max-w-xl text-lg leading-snug text-foreground/70">
-            I built the high-fidelity design in Framer first. It has no native
-            commerce, so I needed a paid plugin, and wiring collections,
-            filters and carts through it took more effort than the design
-            itself. I decided to build the storefront in code, which gave me
-            full control over the design I had already made.
+            I built the high-fidelity design in Framer first, which let me
+            settle the look quickly. A store also needs collections, filters
+            and a cart working with real product data, so I carried the design
+            into code. That gave me one system for both design and commerce,
+            with full control over performance, accessibility and how the data
+            connects.
           </p>
           <div className="space-y-6 text-lg leading-snug text-foreground/70">
             <p>
@@ -291,9 +284,9 @@ export default function ElysianPage() {
             The pivot
           </p>
           <p className="mt-4 max-w-2xl text-lg leading-snug text-foreground/70">
-            Two things changed during the build. The real catalog was
-            diffusers, room sprays and car diffusers, not candles, and the
-            founder postponed the launch. I finished the project as a complete,
+            Two things changed during the build. The initial catalog turned out
+            to be diffusers, room sprays and car diffusers, and the founder
+            postponed the launch. I finished the project as a complete,
             clickable demo: the catalog and photos are saved into the project,
             the cart lives in the browser, and the checkout takes no payment.
           </p>
@@ -324,18 +317,6 @@ export default function ElysianPage() {
         </div>
       </section>
 
-      {/* 6. What is real and what is sample */}
-      <section className="border-t border-line px-6 py-20 md:px-16 md:py-28">
-        <Eyebrow>What is real and what is sample</Eyebrow>
-        <Heading size="md">To keep this honest.</Heading>
-        <ul className="mt-10 border-t border-line">
-          {sample.map((s) => (
-            <li key={s} className="border-b border-line py-5 text-lg text-foreground/80">
-              {s}
-            </li>
-          ))}
-        </ul>
-      </section>
 
       {/* 7. Outcome, learned, next */}
       <section className="border-t border-line px-6 py-20 md:px-16 md:py-28">

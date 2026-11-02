@@ -10,23 +10,11 @@ export type WalkthroughStep = {
   alt: string;
 };
 
-function Shot({ step, sizes }: { step: WalkthroughStep; sizes: string }) {
-  if (!step.image) {
-    return (
-      <div className="flex h-full items-center justify-center p-4 text-center font-mono text-xs uppercase tracking-widest text-foreground/50">
-        {step.alt}
-      </div>
-    );
-  }
+function Placeholder({ alt }: { alt: string }) {
   return (
-    <Image
-      src={step.image}
-      alt={step.alt}
-      fill
-      unoptimized
-      sizes={sizes}
-      className="object-cover object-top"
-    />
+    <div className="flex h-full min-h-40 items-center justify-center p-4 text-center font-mono text-xs uppercase tracking-widest text-foreground/50">
+      {alt}
+    </div>
   );
 }
 
@@ -70,7 +58,7 @@ export default function Walkthrough({
                 <span className="h-2 w-2 rounded-full bg-foreground/20" />
                 <span className="h-2 w-2 rounded-full bg-foreground/20" />
               </div>
-              <div className="relative aspect-[16/10]">
+              <div className="relative aspect-[16/10] bg-[#F5F0E8]">
                 {steps.map((step, i) => (
                   <div
                     key={step.title}
@@ -79,7 +67,18 @@ export default function Walkthrough({
                       i === active ? "opacity-100" : "opacity-0"
                     }`}
                   >
-                    <Shot step={step} sizes="55vw" />
+                    {step.image ? (
+                      <Image
+                        src={step.image}
+                        alt={step.alt}
+                        fill
+                        unoptimized
+                        sizes="55vw"
+                        className="object-contain"
+                      />
+                    ) : (
+                      <Placeholder alt={step.alt} />
+                    )}
                   </div>
                 ))}
               </div>
@@ -106,9 +105,21 @@ export default function Walkthrough({
                   i === active ? "lg:opacity-100" : "lg:opacity-30"
                 }`}
               >
-                {/* Image inline on phones and tablets */}
-                <div className="relative mb-6 aspect-[16/10] overflow-hidden border border-foreground/25 bg-[#151516] lg:hidden">
-                  <Shot step={step} sizes="100vw" />
+                {/* Whole image, inline on phones and tablets */}
+                <div className="mb-6 overflow-hidden border border-foreground/25 bg-[#F5F0E8] lg:hidden">
+                  {step.image ? (
+                    <Image
+                      src={step.image}
+                      alt={step.alt}
+                      width={0}
+                      height={0}
+                      unoptimized
+                      sizes="100vw"
+                      style={{ width: "100%", height: "auto" }}
+                    />
+                  ) : (
+                    <Placeholder alt={step.alt} />
+                  )}
                 </div>
                 <p className="font-mono text-xs uppercase tracking-widest text-foreground/50">
                   {pad(i + 1)}
