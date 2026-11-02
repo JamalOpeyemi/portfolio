@@ -3,6 +3,13 @@ import Link from "next/link";
 import { projects } from "../../data/projects";
 import { Reveal, Frame, Eyebrow, Heading } from "../../components/CaseKit";
 import Walkthrough, { type WalkthroughStep } from "../../components/Walkthrough";
+import {
+  ProblemCard,
+  Personas,
+  JourneyMap,
+  PageSpeed,
+  ContrastDemo,
+} from "../../components/ElysianVisuals";
 
 export const metadata: Metadata = {
   title: "Elysian",
@@ -10,12 +17,8 @@ export const metadata: Metadata = {
 
 const demoUrl = "https://elysian-self.vercel.app/";
 
-/* IMAGES: after you add a file to public/work/elysian/, add its name here (no .png).
-   Example: const uploaded = ["hero", "personas"]; */
-const uploaded: string[] = [];
-
-const shot = (name: string) =>
-  uploaded.includes(name) ? `/work/elysian/${name}.png` : "";
+// Files live in public/work/elysian/ (for example hero.png)
+const shot = (name: string) => `/work/elysian/${name}.png`;
 
 const walkthrough: WalkthroughStep[] = [
   {
@@ -77,7 +80,7 @@ const decisions = [
   },
   {
     title: "Readable colour",
-    text: "The soft palette looked right but the small text was too faint. By my calculation, the gold text was about 2.4:1 against the cream background and the grey about 3.6:1; guidance asks for 4.5:1. I kept the palette for lines and surfaces and added deeper text shades, raising both to about 6:1.",
+    text: "The soft palette looked right but the small text was too faint. By my calculation, the gold text was about 2.4:1 against the ivory background and the grey about 3.6:1; guidance asks for 4.5:1. I kept the palette for lines and surfaces and added deeper text shades, raising both to about 6:1.",
   },
   {
     title: "Calm motion",
@@ -85,13 +88,12 @@ const decisions = [
   },
 ];
 
-// PLACEHOLDER: add the real hex codes from your Elysian design
 const palette = [
-  { name: "Ivory", hex: "" },
-  { name: "Blush", hex: "" },
-  { name: "Deep mocha", hex: "" },
-  { name: "Terracotta", hex: "" },
-  { name: "Muted gold", hex: "" },
+  { name: "Ivory", hex: "#F5F0E8", text: "#2C1A0E" },
+  { name: "Blush", hex: "#EDD9C8", text: "#2C1A0E" },
+  { name: "Deep mocha", hex: "#2C1A0E", text: "#F5F0E8" },
+  { name: "Terracotta", hex: "#C4714A", text: "#2C1A0E" },
+  { name: "Muted gold", hex: "#B89A6A", text: "#2C1A0E" },
 ];
 
 const sample = [
@@ -161,9 +163,8 @@ export default function ElysianPage() {
         <Reveal className="mt-14">
           <Frame
             src={shot("hero")}
-            label="The finished home page, on a laptop and a phone"
+            label="The finished Elysian home page"
             ratio="16/9"
-            fit="contain"
           />
         </Reveal>
       </section>
@@ -176,20 +177,15 @@ export default function ElysianPage() {
           <span className="font-serif font-normal normal-case italic">so buyers left.</span>
         </Heading>
         <div className="mt-10 grid gap-8 md:grid-cols-2 md:gap-16">
-          <div className="space-y-6 text-lg leading-snug text-foreground/70">
-            <p>
-              Elysian is a home fragrance brand run by a founder I know well:
-              my sister. Customers found it on TikTok and Instagram, then had to
-              send a direct message to ask for prices and check stock. Some
-              never got a quick reply and moved on.
-            </p>
-            <p className="text-foreground">
-              How might we create a website for Elysian that builds trust, shows
-              the products beautifully, and makes ordering so easy that no
-              customer drops off before completing a purchase?
-            </p>
-          </div>
-          <Frame src={shot("problem")} label="Problem statement and HMW" ratio="4/3" />
+          <p className="max-w-xl text-lg leading-snug text-foreground/70">
+            Elysian is a home fragrance brand run by a founder I know well: my
+            sister. Customers found it on TikTok and Instagram, then had to
+            send a direct message to ask for prices and check stock. Some never
+            got a quick reply and moved on.
+          </p>
+          <Reveal>
+            <ProblemCard />
+          </Reveal>
         </div>
       </section>
 
@@ -197,25 +193,8 @@ export default function ElysianPage() {
       <section className="border-t border-line px-6 py-20 md:px-16 md:py-28">
         <Eyebrow>Who I designed for</Eyebrow>
         <Heading size="md">Two people, one frustration.</Heading>
-        <div className="mt-10 grid gap-px border border-line bg-line md:grid-cols-2">
-          <div className="bg-background p-6 md:p-8">
-            <p className="font-mono text-xs uppercase tracking-widest text-foreground/50">
-              Ama, 28
-            </p>
-            <p className="mt-4 text-lg leading-snug text-foreground/80">
-              Finds brands on TikTok, loves the look of Elysian, but gives up
-              when she has to DM to order.
-            </p>
-          </div>
-          <div className="bg-background p-6 md:p-8">
-            <p className="font-mono text-xs uppercase tracking-widest text-foreground/50">
-              Mrs. Bello, 44
-            </p>
-            <p className="mt-4 text-lg leading-snug text-foreground/80">
-              Hears about brands through friends and wants a proper website
-              before she will pay a small business.
-            </p>
-          </div>
+        <div className="mt-10">
+          <Personas />
         </div>
         <p className="mt-6 max-w-2xl text-foreground/60">
           To be clear about their basis: these are proto-personas, built from
@@ -223,9 +202,8 @@ export default function ElysianPage() {
           from formal interviews. I treated them as hypotheses to test, and a
           usability study with real customers is the first thing I would add.
         </p>
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
-          <Frame src={shot("personas")} label="Both personas side by side" ratio="4/3" caption="Personas" />
-          <Frame src={shot("journey-map")} label="Ama's journey map, from discovery to drop-off" ratio="4/3" caption="Journey map" />
+        <div className="mt-12">
+          <JourneyMap />
         </div>
         <p className="mt-6 max-w-2xl text-lg leading-snug text-foreground/70">
           Mapping Ama’s journey showed the exact moment to design for: the
@@ -233,7 +211,7 @@ export default function ElysianPage() {
         </p>
       </section>
 
-      {/* 4. Decisions + walkthrough: the centrepiece */}
+      {/* 4. Decisions + walkthrough */}
       <section className="border-t border-line px-6 py-20 md:px-16 md:py-28">
         <Eyebrow>Decisions that shaped the product</Eyebrow>
         <Heading>Five calls that changed the design.</Heading>
@@ -256,6 +234,13 @@ export default function ElysianPage() {
           ))}
         </div>
 
+        <p className="mt-16 font-mono text-xs uppercase tracking-widest text-foreground/50">
+          Readable colour, before and after
+        </p>
+        <div className="mt-4">
+          <ContrastDemo />
+        </div>
+
         <p className="mt-20 font-mono text-xs uppercase tracking-widest text-foreground/50">
           The home page, section by section
         </p>
@@ -270,14 +255,14 @@ export default function ElysianPage() {
           <span className="font-serif font-normal normal-case italic">Built in code.</span>
         </Heading>
         <div className="mt-10 grid gap-8 md:grid-cols-2 md:gap-16">
+          <p className="max-w-xl text-lg leading-snug text-foreground/70">
+            I built the high-fidelity design in Framer first. It has no native
+            commerce, so I needed a paid plugin, and wiring collections,
+            filters and carts through it took more effort than the design
+            itself. I decided to build the storefront in code, which gave me
+            full control over the design I had already made.
+          </p>
           <div className="space-y-6 text-lg leading-snug text-foreground/70">
-            <p>
-              I built the high-fidelity design in Framer first. It has no native
-              commerce, so I needed a paid plugin, and wiring collections,
-              filters and carts through it took more effort than the design
-              itself. I decided to build the storefront in code, which gave me
-              full control over the design I had already made.
-            </p>
             <p>
               The result is a Next.js storefront with collection pages and
               filters, a slider, product pages with the Type selector, a cart
@@ -290,15 +275,10 @@ export default function ElysianPage() {
               tested, questioned and redirected each step.
             </p>
           </div>
-          <div className="space-y-6">
-            <Frame src={shot("framer-design")} label="The Framer design" ratio="16/10" caption="Framer" />
-            <Frame src={shot("coded-home")} label="The coded site" ratio="16/10" caption="Code" />
-          </div>
         </div>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
-          <Frame src={shot("pagespeed-home")} label="PageSpeed Insights: home page, 96 on mobile" ratio="4/3" caption="Home page: 96 on mobile" />
-          <Frame src={shot("pagespeed-product")} label="PageSpeed Insights: product page, 97 on mobile" ratio="4/3" caption="Product page: 97 on mobile" />
+        <div className="mt-14">
+          <PageSpeed />
         </div>
         <p className="mt-6 max-w-2xl text-foreground/60">
           I got there after fixing how the main product image loads. I also
@@ -306,7 +286,6 @@ export default function ElysianPage() {
           reduced-motion support.
         </p>
 
-        {/* The pivot, folded in */}
         <div className="mt-16 border-t border-line pt-10">
           <p className="font-mono text-xs uppercase tracking-widest text-foreground/50">
             The pivot
@@ -320,7 +299,6 @@ export default function ElysianPage() {
           </p>
         </div>
 
-        {/* Visual system, built in code */}
         <div className="mt-16 border-t border-line pt-10">
           <p className="font-mono text-xs uppercase tracking-widest text-foreground/50">
             The visual system
@@ -335,11 +313,11 @@ export default function ElysianPage() {
             {palette.map((c) => (
               <div
                 key={c.name}
-                style={c.hex ? { backgroundColor: c.hex } : undefined}
-                className="flex aspect-square flex-col justify-end bg-[#151516] p-4 font-mono text-xs uppercase tracking-widest"
+                style={{ backgroundColor: c.hex, color: c.text }}
+                className="flex aspect-square flex-col justify-end p-4 font-mono text-xs uppercase tracking-widest"
               >
-                <span className="mix-blend-difference">{c.name}</span>
-                <span className="mt-1 opacity-60 mix-blend-difference">{c.hex || "add hex"}</span>
+                <span>{c.name}</span>
+                <span className="mt-1 opacity-70">{c.hex}</span>
               </div>
             ))}
           </div>

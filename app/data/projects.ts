@@ -13,7 +13,7 @@ export type Project = {
 
 // PLACEHOLDERS: replace with your real projects later.
 export const projects: Project[] = [
-    {
+      {
     slug: "elysian",
     id: "01",
     title: "Elysian",
@@ -23,8 +23,8 @@ export const projects: Project[] = [
     timeline: "",
     tools: "Framer, Next.js, TypeScript, Tailwind CSS, Motion, Shopify Storefront API",
     summary:
-      "A concept online store for a home fragrance brand that sold through Instagram DMs, designed and built from first sketch to a site scoring 96 and 97 on mobile PageSpeed.",
-      image: "/work/elysian/hero.png",
+      "A concept online store for a home fragrance brand that sold through Instagram DMs, designed and built from first sketch to a site scoring 97 and 96 on mobile PageSpeed.",
+    image: "/work/elysian/hero.png",
   },
     {
     slug: "mimar-tech",
