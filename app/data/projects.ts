@@ -24,6 +24,7 @@ export const projects: Project[] = [
     tools: "Framer, Next.js, TypeScript, Tailwind CSS, Motion, Shopify Storefront API",
     summary:
       "A concept online store for a home fragrance brand that sold through Instagram DMs, designed and built from first sketch to a site scoring 96 and 97 on mobile PageSpeed.",
+      image: "/work/elysian/hero.png",
   },
     {
     slug: "mimar-tech",
