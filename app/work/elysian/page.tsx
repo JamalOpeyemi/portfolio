@@ -135,7 +135,7 @@ export default function ElysianPage() {
             ["Role", project.role],
             ["Tools", project.tools],
             ["Year", project.year],
-            ["Status", "Concept. The founder postponed the launch."],
+            ["Status", "Concept, launch postponed. Includes placeholder content."],
           ].map(([k, v]) => (
             <div key={k}>
               <dt className="text-foreground/50">{k}</dt>
