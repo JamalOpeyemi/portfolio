@@ -359,7 +359,9 @@ export function ContrastDemo() {
 
 export function DeviceHero({ url }: { url: string }) {
   const wrapRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(wrapRef, { once: true });
   const [w, setW] = useState(0);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const el = wrapRef.current;
@@ -369,6 +371,13 @@ export function DeviceHero({ url }: { url: string }) {
     setW(el.clientWidth);
     return () => ro.disconnect();
   }, []);
+
+  // Load the live site a moment after the mockup is on screen
+  useEffect(() => {
+    if (!inView) return;
+    const t = setTimeout(() => setReady(true), 1200);
+    return () => clearTimeout(t);
+  }, [inView]);
 
   // Laptop: screen renders at 1440x900. Phone: 393x852.
   const laptopW = w * 0.82;
@@ -385,6 +394,7 @@ export function DeviceHero({ url }: { url: string }) {
   const frameProps = {
     src: url,
     tabIndex: -1,
+    scrolling: "no",
     loading: "lazy" as const,
     className: "pointer-events-none absolute left-0 top-0 border-0 bg-white",
   };
@@ -401,17 +411,22 @@ export function DeviceHero({ url }: { url: string }) {
             {/* Laptop */}
             <div className="absolute left-0 top-0" style={{ width: laptopW }}>
               <div className="overflow-hidden rounded-t-lg border border-foreground/30 bg-black p-[6px]">
-                <div className="relative overflow-hidden" style={{ width: lsw, height: lsh }}>
-                  <iframe
-                    {...frameProps}
-                    title="Elysian home page on a laptop"
-                    style={{
-                      width: 1440,
-                      height: 900,
-                      transform: `scale(${lScale})`,
-                      transformOrigin: "top left",
-                    }}
-                  />
+                <div
+                  className="relative overflow-hidden bg-[#F5F0E8]"
+                  style={{ width: lsw, height: lsh }}
+                >
+                  {ready && (
+                    <iframe
+                      {...frameProps}
+                      title="Elysian home page on a laptop"
+                      style={{
+                        width: 1460,
+                        height: 900,
+                        transform: `scale(${lScale})`,
+                        transformOrigin: "top left",
+                      }}
+                    />
+                  )}
                 </div>
               </div>
               <div className="-mx-3 h-[10px] rounded-b-xl bg-foreground/20" />
@@ -423,19 +438,21 @@ export function DeviceHero({ url }: { url: string }) {
               style={{ width: phoneW }}
             >
               <div
-                className="relative overflow-hidden rounded-[1rem]"
+                className="relative overflow-hidden rounded-[1rem] bg-[#F5F0E8]"
                 style={{ width: psw, height: psh }}
               >
-                <iframe
-                  {...frameProps}
-                  title="Elysian home page on a phone"
-                  style={{
-                    width: 393,
-                    height: 852,
-                    transform: `scale(${pScale})`,
-                    transformOrigin: "top left",
-                  }}
-                />
+                {ready && (
+                  <iframe
+                    {...frameProps}
+                    title="Elysian home page on a phone"
+                    style={{
+                      width: 413,
+                      height: 852,
+                      transform: `scale(${pScale})`,
+                      transformOrigin: "top left",
+                    }}
+                  />
+                )}
               </div>
             </div>
           </>
