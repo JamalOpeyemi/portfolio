@@ -409,7 +409,7 @@ export function AddMoneyDemo() {
         >
           <motion.div
             className="absolute rounded-[3cqw] bg-white"
-            style={{ left: "4.3%", right: "4.3%", top: `${((1448 - 754) / 870) * 100}%`, height: `${(108 / 870) * 100}%` }}
+            style={{ left: "4.3%", right: "4.3%", top: `${((1452 - 754) / 870) * 100}%`, height: `${(108 / 870) * 100}%` }}
             animate={{ opacity: phase === "confirm" ? 0.25 : 0 }}
             transition={{ duration: 0.15 }}
           />
