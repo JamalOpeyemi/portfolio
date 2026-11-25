@@ -119,12 +119,22 @@ const motionRules = [
 ];
 
 const contrast = [
-  ["Ink on background", "#0F172A", "#F6F7FB", "16.7:1", true],
-  ["White on brand blue", "#FFFFFF", "#2F6BFF", "4.5:1", true],
-  ["Grey text on background", "#64748B", "#F6F7FB", "4.45:1", false],
-  ["Green amounts on white", "#16A34A", "#FFFFFF", "3.3:1", false],
-  ["Red amounts on white", "#E5484D", "#FFFFFF", "3.9:1", false],
+  ["White on brand blue", "#2F6BFF", "#2457E6", "4.5 → 5.9", "#FFFFFF"],
+  ["Blue on light blue", "#2F6BFF", "#2457E6", "3.9 → 5.0", "#E6EEFF"],
+  ["Grey text on background", "#64748B", "#5B6B80", "4.45 → 5.1", "#F6F7FB"],
+  ["Green amounts on white", "#16A34A", "#157A3A", "3.3 → 5.4", "#FFFFFF"],
+  ["Red amounts on white", "#E5484D", "#C81E1E", "3.9 → 5.7", "#FFFFFF"],
 ] as const;
+
+/* Amira's journey: how she feels at each stage (1 to 5), and what the design does about it */
+const journeyMap = [
+  { stage: "Decides to save", feel: 3, thought: "I want Paris, but I never stick to saving.", answer: "One goal, one clear plan" },
+  { stage: "Links her bank", feel: 1.8, thought: "Is it safe to connect my bank?", answer: "Log in on the bank’s own page" },
+  { stage: "Sets the goal", feel: 4, thought: "So that’s $286 a month. I can do that.", answer: "The app does the maths" },
+  { stage: "First weeks", feel: 3.2, thought: "I’ll forget by next month.", answer: "Auto-save on the 1st" },
+  { stage: "Overspends", feel: 1.6, thought: "I’ve blown it this month.", answer: "A nudge with the fix" },
+  { stage: "Goal reached", feel: 5, thought: "I didn’t even have to think about it.", answer: "A moment to celebrate" },
+];
 
 const dayOne = [
   ["signup.png", "Create account", "Three short steps, with progress always visible."],
@@ -192,17 +202,62 @@ function Card({ children, className = "" }: { children: React.ReactNode; classNa
   );
 }
 
-function Shot({ src, alt }: { src: string; alt: string }) {
+function JourneyMap() {
+  const W = 1200;
+  const H = 150;
+  const step = W / journeyMap.length;
+  const pts = journeyMap.map((j, i) => [step * i + step / 2, H - 20 - ((j.feel - 1) / 4) * (H - 40)]);
+  const d = pts
+    .map(([x, y], i) => {
+      if (i === 0) return `M ${x} ${y}`;
+      const [px, py] = pts[i - 1];
+      const cx = (px + x) / 2;
+      return `C ${cx} ${py}, ${cx} ${y}, ${x} ${y}`;
+    })
+    .join(" ");
   return (
-    <Image
-      src={`/work/goalguide/${src}`}
-      alt={alt}
-      width={1600}
-      height={1000}
-      unoptimized
-      className="h-auto w-full rounded-2xl bg-white"
-      style={{ boxShadow: `0 0 0 1px ${GG.border}` }}
-    />
+    <div className="mt-6 overflow-x-auto rounded-3xl bg-white" style={{ boxShadow: `0 0 0 1px ${GG.border}` }}>
+      <div className="min-w-[880px] p-6 md:p-8">
+        <div className="flex justify-between font-mono text-[10px] uppercase tracking-widest" style={{ color: GG.muted }}>
+          <span>How she feels</span>
+          <span>Good ↑ · Bad ↓</span>
+        </div>
+        <svg viewBox={`0 0 ${W} ${H}`} className="mt-2 h-auto w-full" aria-hidden="true">
+          <line x1="0" x2={W} y1={H / 2} y2={H / 2} stroke={GG.border} strokeDasharray="4 6" />
+          <path d={d} fill="none" stroke={GG.blue} strokeWidth="3" strokeLinecap="round" />
+          {pts.map(([x, y], i) => (
+            <circle
+              key={i}
+              cx={x}
+              cy={y}
+              r="8"
+              fill={journeyMap[i].feel < 2.5 ? GG.red : journeyMap[i].feel >= 4 ? GG.green : GG.blue}
+              stroke="#fff"
+              strokeWidth="3"
+            />
+          ))}
+        </svg>
+        <ol className="mt-4 grid grid-cols-6 gap-4">
+          {journeyMap.map((j, i) => (
+            <li key={j.stage} className="border-t pt-4" style={{ borderColor: GG.border }}>
+              <p className="font-mono text-[10px]" style={{ color: GG.blue }}>
+                0{i + 1}
+              </p>
+              <p className="mt-1 text-sm font-bold">{j.stage}</p>
+              <p className="mt-2 text-sm italic leading-snug" style={{ color: GG.muted }}>
+                “{j.thought}”
+              </p>
+              <p
+                className="mt-3 rounded-xl px-3 py-2 text-xs font-semibold"
+                style={{ backgroundColor: GG.blueSoft, color: GG.blue }}
+              >
+                {j.answer}
+              </p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
   );
 }
 
@@ -220,7 +275,7 @@ export default function GoalGuidePage() {
         <section className="px-6 pb-20 pt-12 md:px-16 md:pb-28">
           <Link
             href="/work"
-            className="font-mono text-xs uppercase tracking-widest transition-colors hover:text-[#2F6BFF]"
+            className="font-mono text-xs uppercase tracking-widest transition-colors hover:text-[#2457E6]"
             style={{ color: GG.muted }}
           >
             ← All work
@@ -318,22 +373,6 @@ export default function GoalGuidePage() {
                   ))}
                 </div>
 
-                {has("journey-elliot.png") && has("journey-henry.png") && (
-                  <>
-                    <p className="mt-16 font-mono text-xs uppercase tracking-widest" style={{ color: GG.muted }}>
-                      Journey maps
-                    </p>
-                    <p className="mt-3 max-w-2xl" style={{ color: GG.muted }}>
-                      What each of them does, thinks and feels on the way to a money goal, and where it breaks down.
-                    </p>
-                    <div className="mt-6 grid gap-4 md:grid-cols-2">
-                      {["journey-elliot.png", "journey-henry.png"].map((f) => (
-                        <Shot key={f} src={f} alt={`User journey map: ${f.includes("elliot") ? "Elliot" : "Henry"}`} />
-                      ))}
-                    </div>
-                  </>
-                )}
-
                 <Reveal>
                   <div className="mt-16 flex items-center gap-5 rounded-3xl p-6 md:p-8" style={{ backgroundColor: GG.blue, color: "#fff" }}>
                     <span
@@ -359,7 +398,7 @@ export default function GoalGuidePage() {
                 </Lead>
 
                 <ol className="mt-10 flex flex-wrap gap-2 text-sm font-medium">
-                  {["Storyboard", "Paper wireframes", "Digital wireframes", "Low-fi prototype", "Usability study", "Hi-fi design"].map(
+                  {["Journey map", "Paper wireframes", "Digital wireframes", "Low-fi prototype", "Usability study", "Hi-fi design"].map(
                     (step, i) => (
                       <li
                         key={step}
@@ -375,36 +414,35 @@ export default function GoalGuidePage() {
                   )}
                 </ol>
 
-                {(has("storyboard-1.png") || has("paper-1.png")) && (
-                  <div className="mt-14 grid gap-10 md:grid-cols-2">
-                    {has("storyboard-1.png") && (
-                      <div>
-                        <h3 className="text-xl font-bold">Storyboard</h3>
-                        <p className="mt-2 text-sm" style={{ color: GG.muted }}>
-                          The key steps through the product, as one picture of a person’s day.
-                        </p>
-                        <div className="mt-5 grid gap-3">
-                          {["storyboard-1.png", "storyboard-2.png"].filter(has).map((f) => (
-                            <Shot key={f} src={f} alt="Storyboard of the key steps through GoalGuide" />
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                    {has("paper-1.png") && (
-                      <div>
-                        <h3 className="text-xl font-bold">Paper wireframes</h3>
-                        <p className="mt-2 text-sm" style={{ color: GG.muted }}>
-                          Five ideas for each screen, then the strongest parts combined into one.
-                        </p>
-                        <div className="mt-5 grid gap-3">
-                          {["paper-1.png", "paper-2.png"].filter(has).map((f) => (
-                            <Shot key={f} src={f} alt="Paper wireframe sketches" />
-                          ))}
-                        </div>
-                      </div>
-                    )}
+                <h3 className="mt-14 text-xl font-bold">Amira’s journey map</h3>
+                <p className="mt-2 max-w-2xl text-sm" style={{ color: GG.muted }}>
+                  Built from the research journey maps: one line per stage, with how she feels, what she’s thinking and
+                  what the design does about it. The low points became the features.
+                </p>
+                <JourneyMap />
+
+                <div className="mt-16 grid items-center gap-10 md:grid-cols-[1fr_320px]">
+                  <div>
+                    <h3 className="text-xl font-bold">Paper wireframes</h3>
+                    <p className="mt-2 max-w-md text-sm leading-relaxed" style={{ color: GG.muted }}>
+                      I sketched five ideas for each screen on paper, then combined the strongest parts of each into one
+                      version. Paper keeps it cheap to throw ideas away.
+                    </p>
                   </div>
-                )}
+                  {has("paper-1.png") && (
+                    <Reveal>
+                      <Image
+                        src="/work/goalguide/paper-1.png"
+                        alt="Paper wireframe sketches for sign up, link bank and set a goal"
+                        width={720}
+                        height={960}
+                        unoptimized
+                        className="h-auto w-full rounded-2xl"
+                        style={{ boxShadow: "0 30px 60px -30px rgba(15,23,42,0.35)" }}
+                      />
+                    </Reveal>
+                  )}
+                </div>
 
                 <h3 className="mt-16 text-xl font-bold">Digital wireframes, wired into a low-fi prototype</h3>
                 <p className="mt-2 max-w-2xl text-sm" style={{ color: GG.muted }}>
@@ -777,8 +815,9 @@ export default function GoalGuidePage() {
           <div>
             <h3 className="text-2xl font-bold tracking-tight">Accessibility check</h3>
             <p className="mt-3" style={{ color: GG.muted }}>
-              I checked the text colours against WCAG AA, which asks for at least 4.5:1 for normal text. The core
-              pairs pass. Three don’t yet, and the fix is already chosen.
+              I checked every text colour against WCAG AA, which asks for at least 4.5:1 for normal text. Five pairs
+              were at or below the line, so I darkened four colours just enough to pass with room to spare. The look
+              barely changes.
             </p>
             <ul className="mt-6 space-y-3 text-sm" style={{ color: GG.muted }}>
               <li>
@@ -786,37 +825,46 @@ export default function GoalGuidePage() {
                 so they read without colour.
               </li>
               <li>
-                <b style={{ color: GG.ink }}>Tap targets.</b> Main buttons are 54px tall and nav tabs 44px. The amount
-                chips (42px) and back button (40px) are next to come up to 44px.
+                <b style={{ color: GG.ink }}>Tap targets.</b> Every button, chip, tab and back button is at least 44px.
               </li>
               <li>
                 <b style={{ color: GG.ink }}>One typeface.</b> Inter only, with hierarchy from size and weight.
               </li>
-              <li>
-                <b style={{ color: GG.ink }}>Next fix.</b> Darker green #15803D, red #C81E1E and grey #5B6B80 bring all
-                three above 5:1 without changing the look.
-              </li>
             </ul>
           </div>
           <div className="overflow-hidden rounded-3xl" style={{ boxShadow: `0 0 0 1px ${GG.border}` }}>
-            {contrast.map(([name, fg, bg, ratio, pass]) => (
-              <div key={name} className="flex items-center gap-4 border-b px-5 py-4 last:border-b-0" style={{ borderColor: GG.border }}>
+            {contrast.map(([name, before, after, ratio, bg]) => {
+              const onColour = name.startsWith("White");
+              const swatch = (c: string) => (
                 <span
-                  className="flex h-10 w-14 shrink-0 items-center justify-center rounded-lg text-sm font-bold"
-                  style={{ backgroundColor: bg, color: fg, boxShadow: `0 0 0 1px ${GG.border}` }}
+                  className="flex h-10 w-12 shrink-0 items-center justify-center rounded-lg text-sm font-bold"
+                  style={{
+                    backgroundColor: onColour ? c : bg,
+                    color: onColour ? "#FFFFFF" : c,
+                    boxShadow: `0 0 0 1px ${GG.border}`,
+                  }}
                 >
                   Aa
                 </span>
-                <span className="flex-1 text-sm font-medium">{name}</span>
-                <span className="font-mono text-sm">{ratio}</span>
-                <span
-                  className="w-16 rounded-full py-1 text-center text-xs font-semibold"
-                  style={{ backgroundColor: pass ? GG.greenSoft : GG.redSoft, color: pass ? "#0F5132" : "#9B1C1C" }}
-                >
-                  {pass ? "Pass" : "Fix"}
-                </span>
-              </div>
-            ))}
+              );
+              return (
+                <div key={name} className="flex items-center gap-3 border-b px-5 py-4 last:border-b-0" style={{ borderColor: GG.border }}>
+                  {swatch(before)}
+                  <span aria-hidden="true" style={{ color: GG.muted }}>
+                    →
+                  </span>
+                  {swatch(after)}
+                  <span className="ml-2 flex-1 text-sm font-medium">{name}</span>
+                  <span className="hidden font-mono text-xs sm:inline">{ratio}</span>
+                  <span
+                    className="w-14 rounded-full py-1 text-center text-xs font-semibold"
+                    style={{ backgroundColor: GG.greenSoft, color: "#0F5132" }}
+                  >
+                    Pass
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

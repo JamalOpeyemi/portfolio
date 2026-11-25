@@ -1,15 +1,15 @@
 /* GoalGuide colours, taken from the Figma variables */
 export const GG = {
-  blue: "#2F6BFF",
+  blue: "#2457E6",
   blueSoft: "#E6EEFF",
   ink: "#0F172A",
-  muted: "#64748B",
+  muted: "#5B6B80",
   border: "#E2E8F0",
   bg: "#F6F7FB",
   track: "#EEF1F7",
-  green: "#16A34A",
+  green: "#157A3A",
   greenSoft: "#E7F6EC",
-  red: "#E5484D",
+  red: "#C81E1E",
   redSoft: "#FDECEC",
 };
 
