@@ -5,8 +5,8 @@ import { Inter, Oxanium } from "next/font/google";
 import { projects } from "../../data/projects";
 
 // Mimar's own fonts, loaded on this page only
-const oxanium = Oxanium({ subsets: ["latin"], weight: ["600", "700"], display: "swap" });
-const inter = Inter({ subsets: ["latin"], display: "swap" });
+const oxanium = Oxanium({ subsets: ["latin"], weight: ["600", "700"], variable: "--font-oxanium", display: "swap" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter-mimar", display: "swap" });
 
 export const metadata: Metadata = {
   title: "Mimar Tech",
@@ -73,7 +73,9 @@ export default function MimarTechPage() {
 
   return (
     <main>
-      {/* Opening (your dark style) */}
+      {/* Opening to visual language: in Mimar's own look */}
+      <div className={`theme-mimar ${oxanium.variable} ${inter.variable}`}>
+      {/* Opening */}
       <section className="px-6 pb-16 pt-12 md:px-16">
         <Link
           href="/work"
@@ -161,7 +163,7 @@ export default function MimarTechPage() {
       </section>
 
       {/* Centerpiece: before / after, in Mimar's own look */}
-      <section className={`${inter.className} bg-white px-6 py-20 text-black md:px-16 md:py-28`}>
+      <section className={`${inter.className} border-t border-line bg-white px-6 py-20 text-black md:px-16 md:py-28`}>
         <p className="font-mono text-sm uppercase tracking-widest text-black/60">
           The redesign
         </p>
@@ -265,7 +267,7 @@ export default function MimarTechPage() {
       </section>
 
       {/* Visual language, in Mimar's look */}
-      <section className={`${inter.className} bg-white px-6 py-20 text-black md:px-16 md:py-28`}>
+      <section className={`${inter.className} border-t border-line bg-white px-6 py-20 text-black md:px-16 md:py-28`}>
         <p className="font-mono text-sm uppercase tracking-widest text-black/60">
           Visual language
         </p>
@@ -304,6 +306,8 @@ export default function MimarTechPage() {
           </div>
         </div>
       </section>
+
+      </div>
 
       {/* Constraints + outcome */}
       <section className="border-t border-line px-6 py-20 md:px-16 md:py-28">
