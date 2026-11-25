@@ -435,10 +435,7 @@ export function AddMoneyDemo() {
         />
       </div>
 
-      <div className="mt-5 flex items-center justify-between gap-4">
-        <p className="font-mono text-[11px] uppercase tracking-widest" style={{ color: GG.muted }}>
-          Live animation, built in code
-        </p>
+      <div className="mt-5 flex items-center justify-end gap-4">
         {!reduce && (
           <button
             type="button"

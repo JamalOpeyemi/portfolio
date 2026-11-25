@@ -1,3 +1,5 @@
+import fs from "node:fs";
+import path from "node:path";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,6 +17,14 @@ export const metadata: Metadata = {
     "A savings app case study told as one journey: Amira saves $2,000 for a trip to Paris, from day one to goal reached.",
 };
 
+/* Images from the original case study. Each one appears once its file is added. */
+function has(file: string) {
+  return fs.existsSync(path.join(process.cwd(), "public/work/goalguide", file));
+}
+
+const PROTOTYPE =
+  "https://www.figma.com/proto/8pObec7UvEDsKrhZdb8okN/Goal-Guide?node-id=843-1354&starting-point-node-id=843%3A1354&scaling=scale-down&content-scaling=fixed&show-proto-sidebar=1";
+
 /* ---------- Content ---------- */
 
 const painPoints = [
@@ -30,10 +40,91 @@ const personas = [
 ];
 
 const findings = [
-  ["“How far along am I?”", "Users lost track during sign-up.", "A labelled stepper on every onboarding screen: Step 1 of 3."],
-  ["“Did that actually save?”", "Users weren’t sure a goal had been created.", "A confirmation screen that spells out the plan."],
-  ["“Where are the settings?”", "The settings icon was hard to find.", "Settings live in one predictable place, the Me tab."],
+  {
+    quote: "“How far along am I?”",
+    problem: "Users lost track of where they were during sign-up.",
+    fix: "A progress indicator on every onboarding screen. Today it’s a labelled stepper: Step 2 of 3.",
+    before: "wf-link-bank-before.png",
+    after: "wf-link-bank-after.png",
+  },
+  {
+    quote: "“Did that actually save?”",
+    problem: "After creating a goal or a budget, users weren’t sure it had worked.",
+    fix: "A confirmation screen for every goal and budget. Today it spells out the plan in one sentence.",
+    before: null,
+    after: null,
+  },
+  {
+    quote: "“Where are the settings?”",
+    problem: "The settings icon was hard to find.",
+    fix: "First moved into the menu. In the redesign, settings live in one predictable place: the Me tab.",
+    before: null,
+    after: null,
+  },
 ];
+
+const wireframes = [
+  ["wf-signup.png", "Sign up"],
+  ["wf-link-bank-after.png", "Link bank"],
+  ["wf-goal.png", "Savings goal"],
+  ["wf-budget.png", "Budget"],
+  ["wf-dashboard.png", "Dashboard"],
+  ["wf-withdraw.png", "Withdraw"],
+];
+
+/* The main journey, and the paths that branch off it */
+const mainFlow = ["Welcome", "Sign up", "Link bank", "Create goal", "Goal created", "Home", "Auto-save", "Goal detail", "Add money", "Goal reached"];
+const sideFlows = [
+  ["Returning user", ["Log in", "Face ID", "Home"]],
+  ["Budget", ["Budget", "Over-budget nudge", "Edit budget"]],
+  ["Taking money out", ["Goal detail", "Withdraw", "Error with a fix", "Done"]],
+  ["Staying informed", ["Notifications", "Goal detail"]],
+] as const;
+
+const motions = [
+  {
+    title: "Welcome",
+    from: "kf-welcome-intro.png",
+    to: "welcome.png",
+    how: "Smart Animate, 1s, gentle spring, then a slow float loop (1.6s ease in and out).",
+    why: "Before reading a word, people see what the app does: goals filling up.",
+  },
+  {
+    title: "Onboarding steps",
+    from: "signup.png",
+    to: "link-bank.png",
+    how: "Smart Animate, 0.45s ease in and out. The stepper keeps its layer names, so the bar fills instead of jumping.",
+    why: "It answers the first usability finding: you always know how far is left.",
+  },
+  {
+    title: "Goal created",
+    from: "kf-goal-created-intro.png",
+    to: "goal-created.png",
+    how: "Smart Animate, 0.6s bouncy, 0.25s after the screen loads.",
+    why: "The check pops in to confirm it worked. That was the second finding.",
+  },
+  {
+    title: "Goal reached",
+    from: "kf-goal-reached-intro.png",
+    to: "goal-reached.png",
+    how: "Smart Animate, 1.3s gentle spring. The ring closes, turns green and the confetti falls in.",
+    why: "Seven months of saving deserves a moment. The finish should feel like one.",
+  },
+];
+
+const motionRules = [
+  ["Smart Animate · 0.45s", "Moving forward inside a flow, so shared elements carry over."],
+  ["Move in · 0.3s", "Opening a detail screen. Move out goes back the same way."],
+  ["Dissolve · 0.25s", "Switching tabs and showing results, where nothing needs to travel."],
+];
+
+const contrast = [
+  ["Ink on background", "#0F172A", "#F6F7FB", "16.7:1", true],
+  ["White on brand blue", "#FFFFFF", "#2F6BFF", "4.5:1", true],
+  ["Grey text on background", "#64748B", "#F6F7FB", "4.45:1", false],
+  ["Green amounts on white", "#16A34A", "#FFFFFF", "3.3:1", false],
+  ["Red amounts on white", "#E5484D", "#FFFFFF", "3.9:1", false],
+] as const;
 
 const dayOne = [
   ["signup.png", "Create account", "Three short steps, with progress always visible."],
@@ -101,6 +192,20 @@ function Card({ children, className = "" }: { children: React.ReactNode; classNa
   );
 }
 
+function Shot({ src, alt }: { src: string; alt: string }) {
+  return (
+    <Image
+      src={`/work/goalguide/${src}`}
+      alt={alt}
+      width={1600}
+      height={1000}
+      unoptimized
+      className="h-auto w-full rounded-2xl bg-white"
+      style={{ boxShadow: `0 0 0 1px ${GG.border}` }}
+    />
+  );
+}
+
 /* ---------- Page ---------- */
 
 export default function GoalGuidePage() {
@@ -133,8 +238,8 @@ export default function GoalGuidePage() {
                 Saving fails quietly. People don’t quit their goals, they just stop showing up.
               </p>
               <p className="mt-5 max-w-xl text-lg" style={{ color: GG.muted }}>
-                GoalGuide turns “I want to save for something” into a plan that runs itself. This case study follows one
-                person, Amira, from her first tap to her goal. Watch the ring fill as you scroll.
+                An easy-to-use savings and budgeting app that makes managing money simple, shaped by what users needed.
+                This case study follows one person, Amira, from her first tap to her goal.
               </p>
 
               <dl
@@ -213,6 +318,22 @@ export default function GoalGuidePage() {
                   ))}
                 </div>
 
+                {has("journey-elliot.png") && has("journey-henry.png") && (
+                  <>
+                    <p className="mt-16 font-mono text-xs uppercase tracking-widest" style={{ color: GG.muted }}>
+                      Journey maps
+                    </p>
+                    <p className="mt-3 max-w-2xl" style={{ color: GG.muted }}>
+                      What each of them does, thinks and feels on the way to a money goal, and where it breaks down.
+                    </p>
+                    <div className="mt-6 grid gap-4 md:grid-cols-2">
+                      {["journey-elliot.png", "journey-henry.png"].map((f) => (
+                        <Shot key={f} src={f} alt={`User journey map: ${f.includes("elliot") ? "Elliot" : "Henry"}`} />
+                      ))}
+                    </div>
+                  </>
+                )}
+
                 <Reveal>
                   <div className="mt-16 flex items-center gap-5 rounded-3xl p-6 md:p-8" style={{ backgroundColor: GG.blue, color: "#fff" }}>
                     <span
@@ -230,7 +351,169 @@ export default function GoalGuidePage() {
 
               {/* Chapter 1 */}
               <Chapter index={1} className="border-t border-[#E2E8F0] py-24 md:py-32">
-                <Kicker n="01" label="Day 1" />
+                <Kicker n="01" label="Shaping it" />
+                <H2>From sketches to a tested flow.</H2>
+                <Lead>
+                  Before anything looked good, it had to work. I mapped the key moments, sketched, built a clickable
+                  greyscale prototype and put it in front of users.
+                </Lead>
+
+                <ol className="mt-10 flex flex-wrap gap-2 text-sm font-medium">
+                  {["Storyboard", "Paper wireframes", "Digital wireframes", "Low-fi prototype", "Usability study", "Hi-fi design"].map(
+                    (step, i) => (
+                      <li
+                        key={step}
+                        className="rounded-full px-4 py-2"
+                        style={{ backgroundColor: i === 5 ? GG.blue : "#fff", color: i === 5 ? "#fff" : GG.ink, boxShadow: `0 0 0 1px ${GG.border}` }}
+                      >
+                        <span className="mr-2 font-mono text-xs" style={{ color: i === 5 ? "rgba(255,255,255,0.7)" : GG.blue }}>
+                          0{i + 1}
+                        </span>
+                        {step}
+                      </li>
+                    ),
+                  )}
+                </ol>
+
+                {(has("storyboard-1.png") || has("paper-1.png")) && (
+                  <div className="mt-14 grid gap-10 md:grid-cols-2">
+                    {has("storyboard-1.png") && (
+                      <div>
+                        <h3 className="text-xl font-bold">Storyboard</h3>
+                        <p className="mt-2 text-sm" style={{ color: GG.muted }}>
+                          The key steps through the product, as one picture of a person’s day.
+                        </p>
+                        <div className="mt-5 grid gap-3">
+                          {["storyboard-1.png", "storyboard-2.png"].filter(has).map((f) => (
+                            <Shot key={f} src={f} alt="Storyboard of the key steps through GoalGuide" />
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    {has("paper-1.png") && (
+                      <div>
+                        <h3 className="text-xl font-bold">Paper wireframes</h3>
+                        <p className="mt-2 text-sm" style={{ color: GG.muted }}>
+                          Five ideas for each screen, then the strongest parts combined into one.
+                        </p>
+                        <div className="mt-5 grid gap-3">
+                          {["paper-1.png", "paper-2.png"].filter(has).map((f) => (
+                            <Shot key={f} src={f} alt="Paper wireframe sketches" />
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                <h3 className="mt-16 text-xl font-bold">Digital wireframes, wired into a low-fi prototype</h3>
+                <p className="mt-2 max-w-2xl text-sm" style={{ color: GG.muted }}>
+                  The sketches became greyscale screens, linked together so people could click through the core flow
+                  before any colour or copy existed.
+                </p>
+                <div className="mt-6 grid grid-cols-3 gap-3 md:grid-cols-6">
+                  {wireframes.map(([src, label], i) => (
+                    <Reveal key={src} delay={i * 0.05}>
+                      <div
+                        className="relative w-full overflow-hidden rounded-xl bg-white"
+                        style={{ aspectRatio: "440/956", boxShadow: `0 0 0 1px ${GG.border}` }}
+                      >
+                        <Image src={`/work/goalguide/${src}`} alt={`${label} wireframe`} fill unoptimized sizes="160px" className="object-cover" />
+                      </div>
+                      <p className="mt-2 text-xs" style={{ color: GG.muted }}>
+                        {label}
+                      </p>
+                    </Reveal>
+                  ))}
+                </div>
+
+                <h3 className="mt-16 text-xl font-bold">What the usability study changed</h3>
+                <div className="mt-6 grid gap-4 lg:grid-cols-3">
+                  {findings.map((f) => (
+                    <Card key={f.quote}>
+                      <p className="text-xl font-bold tracking-tight">{f.quote}</p>
+                      <p className="mt-3 text-sm" style={{ color: GG.muted }}>
+                        {f.problem}
+                      </p>
+                      {f.before && f.after && (
+                        <div className="mt-5 grid grid-cols-2 gap-3">
+                          {[
+                            [f.before, "Before"],
+                            [f.after, "After"],
+                          ].map(([src, label]) => (
+                            <figure key={label}>
+                              <div
+                                className="relative w-full overflow-hidden rounded-lg"
+                                style={{ aspectRatio: "440/300", boxShadow: `0 0 0 1px ${GG.border}` }}
+                              >
+                                <Image src={`/work/goalguide/${src}`} alt={`${label}: link bank wireframe`} fill unoptimized sizes="160px" className="object-cover object-top" />
+                              </div>
+                              <figcaption className="mt-1.5 font-mono text-[10px] uppercase tracking-widest" style={{ color: GG.muted }}>
+                                {label}
+                              </figcaption>
+                            </figure>
+                          ))}
+                        </div>
+                      )}
+                      <p className="mt-5 rounded-2xl px-4 py-3 text-sm font-medium" style={{ backgroundColor: GG.greenSoft, color: "#0F5132" }}>
+                        ✓ {f.fix}
+                      </p>
+                    </Card>
+                  ))}
+                </div>
+
+                <h3 className="mt-16 text-xl font-bold">One journey, with paths branching off it</h3>
+                <p className="mt-2 max-w-2xl text-sm" style={{ color: GG.muted }}>
+                  The first prototype was a set of separate screens. For the redesign I organised everything around one
+                  main journey, from welcome to goal reached, with the other tasks branching off where they happen.
+                </p>
+                <Card className="mt-6">
+                  <p className="font-mono text-[11px] uppercase tracking-widest" style={{ color: GG.blue }}>
+                    Main journey
+                  </p>
+                  <ol className="mt-4 flex flex-wrap items-center gap-y-3 text-sm font-semibold">
+                    {mainFlow.map((step, i) => (
+                      <li key={step} className="flex items-center">
+                        <span className="rounded-full px-3.5 py-2" style={{ backgroundColor: GG.blue, color: "#fff" }}>
+                          {step}
+                        </span>
+                        {i < mainFlow.length - 1 && (
+                          <span aria-hidden="true" className="px-1.5" style={{ color: GG.blue }}>
+                            →
+                          </span>
+                        )}
+                      </li>
+                    ))}
+                  </ol>
+                  <div className="mt-8 grid gap-6 border-t pt-6 md:grid-cols-2" style={{ borderColor: GG.border }}>
+                    {sideFlows.map(([name, steps]) => (
+                      <div key={name}>
+                        <p className="font-mono text-[11px] uppercase tracking-widest" style={{ color: GG.muted }}>
+                          {name}
+                        </p>
+                        <ol className="mt-3 flex flex-wrap items-center gap-y-2 text-sm font-medium">
+                          {steps.map((step, i) => (
+                            <li key={step + i} className="flex items-center">
+                              <span className="rounded-full px-3 py-1.5" style={{ backgroundColor: GG.bg, boxShadow: `0 0 0 1px ${GG.border}` }}>
+                                {step}
+                              </span>
+                              {i < steps.length - 1 && (
+                                <span aria-hidden="true" className="px-1.5" style={{ color: GG.muted }}>
+                                  →
+                                </span>
+                              )}
+                            </li>
+                          ))}
+                        </ol>
+                      </div>
+                    ))}
+                  </div>
+                </Card>
+              </Chapter>
+
+              {/* Chapter 2 */}
+              <Chapter index={2} className="border-t border-[#E2E8F0] py-24 md:py-32">
+                <Kicker n="02" label="Day 1" />
                 <H2>From download to a real plan in three steps.</H2>
                 <Lead>
                   The first version asked for a full budget during sign-up. Now onboarding is three light steps, and
@@ -251,30 +534,11 @@ export default function GoalGuidePage() {
                   ))}
                 </div>
 
-                <p className="mt-20 font-mono text-xs uppercase tracking-widest" style={{ color: GG.muted }}>
-                  What usability testing changed
-                </p>
-                <div className="mt-4 grid gap-4 lg:grid-cols-3">
-                  {findings.map(([quote, problem, fix]) => (
-                    <Card key={quote}>
-                      <p className="text-xl font-bold tracking-tight">{quote}</p>
-                      <p className="mt-3 text-sm" style={{ color: GG.muted }}>
-                        {problem}
-                      </p>
-                      <p
-                        className="mt-5 rounded-2xl px-4 py-3 text-sm font-medium"
-                        style={{ backgroundColor: GG.greenSoft, color: "#0F5132" }}
-                      >
-                        ✓ {fix}
-                      </p>
-                    </Card>
-                  ))}
-                </div>
-              </Chapter>
+</Chapter>
 
               {/* Chapter 2 */}
-              <Chapter index={2} className="border-t border-[#E2E8F0] py-24 md:py-32">
-                <Kicker n="02" label="Week 1" />
+              <Chapter index={3} className="border-t border-[#E2E8F0] py-24 md:py-32">
+                <Kicker n="03" label="Week 1" />
                 <H2>Make it automatic, so nobody has to remember.</H2>
                 <Lead>
                   Accountability was the pain point people felt most. My answer was to take willpower out of it: one clear
@@ -307,8 +571,8 @@ export default function GoalGuidePage() {
               </Chapter>
 
               {/* Chapter 3 */}
-              <Chapter index={3} className="border-t border-[#E2E8F0] py-24 md:py-32">
-                <Kicker n="03" label="Halfway" />
+              <Chapter index={4} className="border-t border-[#E2E8F0] py-24 md:py-32">
+                <Kicker n="04" label="Halfway" />
                 <H2>Staying on track, without opening the app every day.</H2>
                 <Lead>
                   Months later, Amira mostly hears from GoalGuide through notifications. When she does open it, adding a
@@ -343,8 +607,8 @@ export default function GoalGuidePage() {
               </Chapter>
 
               {/* Chapter 4 */}
-              <Chapter index={4} className="border-t border-[#E2E8F0] py-24 md:py-32">
-                <Kicker n="04" label="Bad days" />
+              <Chapter index={5} className="border-t border-[#E2E8F0] py-24 md:py-32">
+                <Kicker n="05" label="Bad days" />
                 <H2>Bad days are part of the journey.</H2>
                 <Lead>
                   Real saving isn’t a straight line. People overspend, need their money back, or make mistakes. These
@@ -365,10 +629,10 @@ export default function GoalGuidePage() {
               </Chapter>
 
               {/* Chapter 5 */}
-              <Chapter index={5} className="border-t border-[#E2E8F0] py-24 md:py-32">
+              <Chapter index={6} className="border-t border-[#E2E8F0] py-24 md:py-32">
                 <div className="grid items-center gap-14 md:grid-cols-[1fr_320px]">
                   <div>
-                    <Kicker n="05" label="Month 7" />
+                    <Kicker n="06" label="Month 7" />
                     <H2>
                       Paris trip <span style={{ color: GG.green }}>complete.</span>
                     </H2>
@@ -399,6 +663,57 @@ export default function GoalGuidePage() {
             </div>
           </div>
         </StoryProvider>
+
+        {/* Motion */}
+        <section className="border-t border-[#E2E8F0] px-6 py-24 md:px-16 md:py-32">
+          <p className="font-mono text-xs uppercase tracking-widest" style={{ color: GG.muted }}>
+            Motion
+          </p>
+          <h2 className="mt-5 max-w-3xl text-4xl font-bold leading-[1.02] tracking-tight md:text-6xl">
+            Every animation has a job.
+          </h2>
+          <p className="mt-6 max-w-2xl text-lg" style={{ color: GG.muted }}>
+            I prototyped the motion in Figma with Smart Animate, using matching layer names so elements move between
+            screens instead of cutting. Each one either shows progress, confirms an action or rewards a milestone.
+          </p>
+
+          <div className="mt-12 grid gap-4 md:grid-cols-2">
+            {motions.map((m) => (
+              <Reveal key={m.title}>
+                <Card className="h-full">
+                  <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3">
+                    <Phone src={`/work/goalguide/${m.from}`} alt={`${m.title}: start of the animation`} sizes="200px" />
+                    <span aria-hidden="true" className="text-2xl" style={{ color: GG.blue }}>
+                      →
+                    </span>
+                    <Phone src={`/work/goalguide/${m.to}`} alt={`${m.title}: end of the animation`} sizes="200px" />
+                  </div>
+                  <h3 className="mt-6 text-xl font-bold">{m.title}</h3>
+                  <p className="mt-3 text-sm" style={{ color: GG.muted }}>
+                    <b style={{ color: GG.ink }}>How:</b> {m.how}
+                  </p>
+                  <p className="mt-2 text-sm" style={{ color: GG.muted }}>
+                    <b style={{ color: GG.ink }}>Why:</b> {m.why}
+                  </p>
+                </Card>
+              </Reveal>
+            ))}
+          </div>
+
+          <h3 className="mt-16 text-xl font-bold">Three transition rules for the whole app</h3>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            {motionRules.map(([rule, use]) => (
+              <div key={rule} className="rounded-3xl bg-white p-6" style={{ boxShadow: `0 0 0 1px ${GG.border}` }}>
+                <p className="font-mono text-xs uppercase tracking-widest" style={{ color: GG.blue }}>
+                  {rule}
+                </p>
+                <p className="mt-3 text-sm leading-relaxed" style={{ color: GG.muted }}>
+                  {use}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
       </div>
 
       {/* Behind it: the system */}
@@ -456,6 +771,79 @@ export default function GoalGuidePage() {
               />
             </div>
           </Reveal>
+        </div>
+        {/* Accessibility */}
+        <div className="mt-16 grid gap-10 lg:grid-cols-[1fr_1.3fr]">
+          <div>
+            <h3 className="text-2xl font-bold tracking-tight">Accessibility check</h3>
+            <p className="mt-3" style={{ color: GG.muted }}>
+              I checked the text colours against WCAG AA, which asks for at least 4.5:1 for normal text. The core
+              pairs pass. Three don’t yet, and the fix is already chosen.
+            </p>
+            <ul className="mt-6 space-y-3 text-sm" style={{ color: GG.muted }}>
+              <li>
+                <b style={{ color: GG.ink }}>Never colour alone.</b> Money in and out also differ by + or − and by icon,
+                so they read without colour.
+              </li>
+              <li>
+                <b style={{ color: GG.ink }}>Tap targets.</b> Main buttons are 54px tall and nav tabs 44px. The amount
+                chips (42px) and back button (40px) are next to come up to 44px.
+              </li>
+              <li>
+                <b style={{ color: GG.ink }}>One typeface.</b> Inter only, with hierarchy from size and weight.
+              </li>
+              <li>
+                <b style={{ color: GG.ink }}>Next fix.</b> Darker green #15803D, red #C81E1E and grey #5B6B80 bring all
+                three above 5:1 without changing the look.
+              </li>
+            </ul>
+          </div>
+          <div className="overflow-hidden rounded-3xl" style={{ boxShadow: `0 0 0 1px ${GG.border}` }}>
+            {contrast.map(([name, fg, bg, ratio, pass]) => (
+              <div key={name} className="flex items-center gap-4 border-b px-5 py-4 last:border-b-0" style={{ borderColor: GG.border }}>
+                <span
+                  className="flex h-10 w-14 shrink-0 items-center justify-center rounded-lg text-sm font-bold"
+                  style={{ backgroundColor: bg, color: fg, boxShadow: `0 0 0 1px ${GG.border}` }}
+                >
+                  Aa
+                </span>
+                <span className="flex-1 text-sm font-medium">{name}</span>
+                <span className="font-mono text-sm">{ratio}</span>
+                <span
+                  className="w-16 rounded-full py-1 text-center text-xs font-semibold"
+                  style={{ backgroundColor: pass ? GG.greenSoft : GG.redSoft, color: pass ? "#0F5132" : "#9B1C1C" }}
+                >
+                  {pass ? "Pass" : "Fix"}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Prototype */}
+      <section className={`${inter.className} px-6 py-20 md:px-16 md:py-24`} style={{ backgroundColor: GG.blue, color: "#fff" }}>
+        <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
+          <div>
+            <p className="font-mono text-xs uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.7)" }}>
+              Prototype
+            </p>
+            <h2 className="mt-4 max-w-2xl text-4xl font-bold leading-[1.05] tracking-tight md:text-5xl">
+              Follow Amira’s journey yourself.
+            </h2>
+            <p className="mt-4 max-w-xl text-lg" style={{ color: "rgba(255,255,255,0.8)" }}>
+              The full Figma prototype, from welcome to goal reached. Other flows are in the sidebar.
+            </p>
+          </div>
+          <a
+            href={PROTOTYPE}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="shrink-0 rounded-full bg-white px-7 py-4 text-base font-semibold transition-transform hover:scale-[1.03]"
+            style={{ color: GG.blue }}
+          >
+            Open the prototype ↗
+          </a>
         </div>
       </section>
 

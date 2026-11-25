@@ -17,6 +17,7 @@ export const GG = {
 /* Where Amira's goal stands in each chapter */
 export const CHAPTERS = [
   { id: "why", label: "Before day 1", amount: 0 },
+  { id: "shape", label: "Shaping it", amount: 0 },
   { id: "day-1", label: "Day 1", amount: 0 },
   { id: "week-1", label: "Week 1", amount: 286 },
   { id: "halfway", label: "Halfway", amount: 1240 },
