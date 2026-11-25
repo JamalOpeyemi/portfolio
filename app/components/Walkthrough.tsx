@@ -52,7 +52,7 @@ export default function Walkthrough({
         {/* Pinned browser frame: large screens only */}
         <div className="hidden lg:block">
           <div className="sticky top-24">
-            <div className="overflow-hidden border border-foreground/25 bg-[#151516]">
+            <div className="overflow-hidden border border-foreground/25 bg-surface">
               <div className="flex items-center gap-1.5 border-b border-line px-4 py-3">
                 <span className="h-2 w-2 rounded-full bg-foreground/20" />
                 <span className="h-2 w-2 rounded-full bg-foreground/20" />

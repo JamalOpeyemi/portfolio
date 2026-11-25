@@ -43,7 +43,7 @@ export function Frame({
   return (
     <figure>
       <div
-        className="relative w-full overflow-hidden border border-foreground/25 bg-[#151516]"
+        className="relative w-full overflow-hidden border border-foreground/25 bg-surface"
         style={{ aspectRatio: ratio }}
       >
         {src ? (
@@ -105,7 +105,7 @@ export function Flow({
   nodes: (string | string[])[];
 }) {
   const chip =
-    "border border-line bg-[#151516] px-4 py-3 font-mono text-xs uppercase tracking-widest";
+    "border border-line bg-surface px-4 py-3 font-mono text-xs uppercase tracking-widest";
   return (
     <div className="border-t border-line py-8">
       <p className="font-mono text-xs uppercase tracking-widest text-foreground/50">
@@ -149,7 +149,7 @@ export function NaturalFrame({
 }) {
   return (
     <figure>
-      <div className="overflow-hidden border border-foreground/25 bg-[#151516]">
+      <div className="overflow-hidden border border-foreground/25 bg-surface">
         <Image
           src={src}
           alt={label}

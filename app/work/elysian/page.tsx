@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DM_Sans, Playfair_Display } from "next/font/google";
 import Link from "next/link";
 import { projects } from "../../data/projects";
 import { Reveal, Frame, Eyebrow, Heading } from "../../components/CaseKit";
@@ -11,6 +12,10 @@ import {
   ContrastDemo,
   DeviceHero,
 } from "../../components/ElysianVisuals";
+
+// Elysian's own brand fonts, used for the product-styled part of the page
+const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair", display: "swap" });
+const dmsans = DM_Sans({ subsets: ["latin"], variable: "--font-dmsans", display: "swap" });
 
 export const metadata: Metadata = {
   title: "Elysian",
@@ -110,6 +115,8 @@ export default function ElysianPage() {
 
   return (
     <main>
+      {/* Opening to design-to-code: in Elysian's own look */}
+      <div className={`theme-elysian ${playfair.variable} ${dmsans.variable}`}>
       {/* 1. Opening */}
       <section className="px-6 pb-16 pt-12 md:px-16">
         <Link
@@ -317,6 +324,7 @@ export default function ElysianPage() {
         </div>
       </section>
 
+      </div>
 
       {/* 7. Outcome, learned, next */}
       <section className="border-t border-line px-6 py-20 md:px-16 md:py-28">

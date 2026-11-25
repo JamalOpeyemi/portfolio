@@ -91,3 +91,40 @@ html.has-custom-cursor * {
     transition: none;
   }
 }
+/* ---------- Product themes for case studies ----------
+   A case study's middle takes on the product's own look by
+   redefining the site colour variables inside a wrapper. The faint
+   text tints used on dark pages get solid shades here so small text
+   still passes WCAG AA on a light background. */
+.theme-elysian {
+  --background: #f5f0e8;
+  --surface: #efe5d8;
+  --line: #ddd0c1;
+  --foreground: #2c1a0e;
+  --accent: #9a4a26;
+  --font-bricolage: var(--font-dmsans);
+  --font-instrument: var(--font-playfair);
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-dmsans), system-ui, sans-serif;
+}
+.theme-elysian :is(h1, h2, h3) {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: -0.01em;
+}
+.theme-elysian .text-foreground\/70,
+.theme-elysian .text-foreground\/60 {
+  color: #504135;
+}
+.theme-elysian .text-foreground\/50 {
+  color: #64564b;
+}
+.theme-elysian .text-foreground\/40 {
+  color: #90857b;
+}
+.theme-elysian ::selection {
+  background: #2c1a0e;
+  color: #f5f0e8;
+}

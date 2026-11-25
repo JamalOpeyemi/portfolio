@@ -9,7 +9,7 @@ const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 export function ProblemCard() {
   return (
-    <div className="border border-foreground/25 bg-[#151516] p-6 md:p-10">
+    <div className="border border-foreground/25 bg-surface p-6 md:p-10">
       <p className="font-mono text-xs uppercase tracking-widest text-foreground/50">
         Problem statement
       </p>
@@ -75,7 +75,7 @@ export function Personas() {
             <div className="flex items-start justify-between">
               <span
                 aria-hidden="true"
-                className="block text-7xl font-bold leading-none text-transparent [-webkit-text-stroke:1px_rgba(242,240,235,0.4)] md:text-8xl"
+                className="block text-7xl font-bold leading-none text-transparent [-webkit-text-stroke:1px_color-mix(in_srgb,var(--foreground)_40%,transparent)] md:text-8xl"
               >
                 {p.initial}
               </span>
@@ -132,7 +132,7 @@ const stages = [
 export function JourneyMap() {
   const reduce = useReducedMotion();
   return (
-    <div className="border border-foreground/25 bg-[#151516] p-6 md:p-10">
+    <div className="border border-foreground/25 bg-surface p-6 md:p-10">
       <p className="font-mono text-xs uppercase tracking-widest text-foreground/50">
         Ama&apos;s journey, from discovery to drop-off
       </p>
@@ -147,7 +147,7 @@ export function JourneyMap() {
           <motion.path
             d="M12.5 40 C 25 40, 25 20, 37.5 20 C 50 20, 50 80, 62.5 80 C 75 80, 75 90, 87.5 90"
             fill="none"
-            stroke="#f2f0eb"
+            style={{ stroke: "var(--foreground)" }}
             strokeWidth="2"
             strokeLinecap="round"
             vectorEffect="non-scaling-stroke"
@@ -246,13 +246,13 @@ function Score({ label, value }: { label: string; value: number }) {
           viewBox="0 0 100 100"
           className="h-full w-full -rotate-90"
         >
-          <circle cx="50" cy="50" r="44" fill="none" stroke="#2a2a2c" strokeWidth="4" />
+          <circle cx="50" cy="50" r="44" fill="none" style={{ stroke: "var(--line)" }} strokeWidth="4" />
           <motion.circle
             cx="50"
             cy="50"
             r="44"
             fill="none"
-            stroke="#f2f0eb"
+            style={{ stroke: "var(--foreground)" }}
             strokeWidth="4"
             strokeLinecap="round"
             initial={{ pathLength: reduce ? value / 100 : 0 }}
@@ -403,7 +403,7 @@ export function DeviceHero({ url }: { url: string }) {
     <div
       role="img"
       aria-label="The live Elysian home page on a laptop and a phone"
-      className="border border-foreground/25 bg-[#151516] p-4 md:p-10"
+      className="border border-foreground/25 bg-surface p-4 md:p-10"
     >
       <div ref={wrapRef} className="relative w-full" style={{ height: w ? laptopH : 0 }}>
         {w > 0 && (
