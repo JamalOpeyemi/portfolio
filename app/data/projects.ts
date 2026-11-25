@@ -66,4 +66,17 @@ export const projects: Project[] = [
       "My own portfolio, designed and built end to end: a dark editorial identity, expressive motion, and a responsive site shipped with AI-assisted workflows.",
       image: "/work/this-site/cover.png",
   },
+  {
+    slug: "goalguide",
+    id: "05",
+    title: "GoalGuide",
+    type: "Mobile App / UX/UI Design",
+    year: "2024 · redesigned 2026",
+    role: "UX/UI Designer (solo)",
+    timeline: "8 weeks",
+    tools: "Figma",
+    summary:
+      "A savings app that turns “I want to save for something” into a plan that runs itself, told as one journey from the first tap to a goal reached.",
+    image: "/work/goalguide/cover.png",
+  },
 ];
