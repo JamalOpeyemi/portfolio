@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Inter } from "next/font/google";
 import { projects } from "../../data/projects";
 import { Reveal, Frame, NaturalFrame, Eyebrow, Heading, Flow } from "../../components/CaseKit";
+
+// ParqOS's interface font, used for the product-styled part of the page
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter-parqos", display: "swap" });
 
 export const metadata: Metadata = {
   title: "ParqOS",
@@ -26,6 +30,8 @@ export default function ParqOSPage() {
 
   return (
     <main>
+      {/* Hero to details: in ParqOS's own look */}
+      <div className={`theme-parqos ${inter.variable}`}>
       {/* 1. Hero */}
       <section className="px-6 pb-16 pt-12 md:px-16">
         <Link
@@ -195,6 +201,8 @@ export default function ParqOSPage() {
           <NaturalFrame src={img("detail-toast")} label="Toast notification" caption="Toast notification" />
         </div>
       </section>
+
+      </div>
 
       {/* 5. Reflection */}
       <section className="border-t border-line px-6 py-20 md:px-16 md:py-28">

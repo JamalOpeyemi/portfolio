@@ -167,3 +167,41 @@ html.has-custom-cursor * {
   background: #b7f415;
   color: #0a0a0a;
 }
+
+.theme-parqos {
+  --background: #ffffff;
+  --surface: #fafafa;
+  --line: #e4e4e7;
+  --foreground: #09090b;
+  --accent: #d42e1f;
+  --font-bricolage: var(--font-inter-parqos);
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter-parqos), system-ui, sans-serif;
+}
+.theme-parqos :is(h1, h2, h3) {
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: -0.03em;
+}
+/* ParqOS marks emphasis with its logo red, not an italic serif */
+.theme-parqos .font-serif {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: inherit;
+  color: var(--accent);
+}
+.theme-parqos .text-foreground\/70,
+.theme-parqos .text-foreground\/60 {
+  color: #52525b;
+}
+.theme-parqos .text-foreground\/50 {
+  color: #63636b;
+}
+.theme-parqos .text-foreground\/40 {
+  color: #a1a1aa;
+}
+.theme-parqos ::selection {
+  background: #09090b;
+  color: #ffffff;
+}
